@@ -21,12 +21,12 @@ The system will utilize a QR code generator to provide each table with a unique 
 1. Navigate to the **frontend** directory
 2. Run `npm install`
 
-# Serve Angular application on local machine
+### Serve Angular application on local machine
 
 1. Run `ng serve` within the **frontend** directory
 2. Navigate to the browser
 
-# Server Django application on local machine
+### Server Django application on local machine
 
 1. Navigate to the project-folder
 2. Run `python manage.py runserver`
