@@ -11,7 +11,7 @@ The system will utilize a QR code generator to provide each table with a unique 
 * [Django](https://www.djangoproject.com/)
 * [Angular](https://angular.dev/)
 * [MariaDB](https://mariadb.org/)
-* [Python] (https://www.python.org)
+* [Python](https://www.python.org)
 
 **[1]** Angular configuration: Stylesheet from: CSS; enabled SSR and SSG (Prerendering)
 
