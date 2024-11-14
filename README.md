@@ -11,6 +11,7 @@ The system will utilize a QR code generator to provide each table with a unique 
 * [Django](https://www.djangoproject.com/)
 * [Angular](https://angular.dev/)
 * [MariaDB](https://mariadb.org/)
+* [Python] (https://www.python.org)
 
 **[1]** Angular configuration: Stylesheet from: CSS; enabled SSR and SSG (Prerendering)
 
@@ -20,13 +21,15 @@ The system will utilize a QR code generator to provide each table with a unique 
 
 1. Navigate to the **frontend** directory
 2. Run `npm install`
+3. Navigate to the **backend** directory
+4. Run `python -m pip install django`
 
 ### Serve Angular application on local machine
 
 1. Run `ng serve` within the **frontend** directory
 2. Navigate to the browser
 
-### Server Django application on local machine
+### Serve Django application on local machine
 
 1. Navigate to the project-folder
 2. Run `python manage.py runserver`
