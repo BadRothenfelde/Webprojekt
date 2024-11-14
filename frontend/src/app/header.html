@@ -1,0 +1,284 @@
+<template>
+
+    <div class="sticky-header">
+        <header app-name="Shogi Köln" app-name-link="/" logo-href="/" meta-nav-aria-label="Meta navigation section"
+            meta-nav-external-aria-label="Meta navigation section">
+            <div class="row">
+
+                <div style="width: 20%"> <img src="../img/bwPiece.svg" alt="logo" /></div>
+                <div style="width: 60%">
+                    <h1 style="z-index: 2;"> Shogi Köln </h1>
+                </div>
+            </div>
+            <div class="row">
+                <nav aria-label="Marin Navigation Links">
+                    <a href="/" aria-label="Home"> Home </a>
+                    <a href="/termine" aria-label="Termine"> Termine </a>
+                    <a href="/links" aria-label="Links"> Links </a>
+                    <a href="/gallerie" aria-label="Gallerie"> Gallerie </a>
+                    <a href="/impressum" aria-label="Impressum"> Impressum </a>
+                    <a href="/shogi" aria-label="Shogi"> Was ist Shogi? </a>
+                    <!-- <a href="/member aria-label="Member"> Mitglied </a> -->
+                    <button class="navBtn" @click="login()" style="width: auto;"> Mitglied </button>
+                    <a v-if="userLoggedin == true" href="/board" aria-label="Board"> Brett </a>
+                    <button class="navBtn" @click="puzzle()" style="width: auto; position: relative; float: right">
+                        Puzzle </button>
+                    <!-- Daily Puzzle-->
+
+                    <!-- End of Daily Puzzle Modal-->
+                    <div id="puzzle" class="modal">
+                        <link rel="pieces" href="./1Kanji_3D.css">
+                        <div class="modal-content animate" style="padding: 1rem; margin: auto;">
+
+                            <span onclick="document.getElementById('puzzle').style.display='none'" class="close"
+                                title="close Modal">&times;</span>
+                            <h1> Daily Puzzle </h1>
+
+                            <div class="row">
+                                <div style="width:25%"></div>
+                                <table style="margin: 0; padding: 0; width: 50%">
+                                    <tr v-for="(row, rowIndex) in board" :key="rowIndex">
+                                        <td v-for="(cell, cellIndex) in row" :key="cellIndex" style="border: 1px solid">
+                                            <img :src="cell.src" :alt="cell.alt"
+                                                style="max-height: 100%; max-width: 100%;" />
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </div>
+
+
+                            <div class="row">
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal log -->
+                    <div id="log" class="modal">
+
+                        <form class="modal-content animate" action="/" method="post">
+                            <div style="padding: 1rem; margin: auto;">
+                                <span onclick="document.getElementById('log').style.display='none'" class="close"
+                                    title="close Modal">&times;</span>
+                                <h1> Login </h1>
+                            </div>
+
+
+                            <div class="row">
+
+                                <label for="name"><b> Benutzername </b></label>
+                                <input type="text" placeholder="Benutzername" name="name" :value="formData.email"
+                                    @input="formData.email = $event.target.value" required>
+                                <label for="pass"><b> Passwort </b></label>
+                                <input type="password" placeholder="Passwort" name="pass" :value="formData.password"
+                                    @input="formData.password = $event.target.value" required>
+                                <button type="button" class="modalBtn" @click="getLogin()"> Login </button>
+
+                            </div>
+                            <div class="row" style="background-color:grey;">
+                                <button type="button" style="margin:auto; width: 33%;"
+                                    onclick="document.getElementById('log').style.display='none'"> Cancel </button>
+                                <button type="button" style="margin:auto; width: 33%;"
+                                    onclick="document.getElementById('log').style.display='none'; document.getElementById('reg').style.display='block'">
+                                    Register </button>
+                                <a style="width: auto; float: right; margin: auto; width: 33%;" href="/"> Forgot
+                                    password? </a>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- End of Modal log -->
+
+                    <!-- Modal reg -->
+                    <div id="reg" class="modal">
+                        <form class="modal-content animate" action="/" method="post">
+                            <div style="padding:1rem; margin: auto;">
+
+                                <span onclick="document.getElementById('reg').style.display='none'" class="close"
+                                    title="close Modal">&times;</span>
+                                <h1> Regristrierung </h1>
+                            </div>
+                            <div class="row">
+                                <label for="name"><b> Benutzername </b></label>
+                                <input type="text" placeholder="Benutzername" name="name" required>
+                                <label for="pass"><b> Passwort </b></label>
+                                <input type="password" placeholder="Passwort" name="pass" required>
+                                <label for="pass"><b> Passwort Bestätigen </b></label>
+                                <input type="password" placeholder="Passwort Bestätigen" name="passcon" required>
+                                <button type="button" class="modalBtn"> Register </button>
+
+                                <label>
+                                    <input type="checkbox" name="remember" checked="checked" style="width: auto;">
+                                    Remember Me
+                                </label>
+                            </div>
+                            <div class="row" style="background-color:grey;">
+                                <button type="button" style="margin:auto; width: 33%;"
+                                    onclick="document.getElementById('reg').style.display='none'"> Cancel </button>
+                                <button type="button" style="margin:auto; width: 33%;"
+                                    onclick="document.getElementById('reg').style.display='none'; document.getElementById('log').style.display='block'">
+                                    Login </button>
+                                <a style="width: auto; float: right; margin: auto; width: 33%;" href="/"> Forgot
+                                    password? </a>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- End of Modal reg -->
+                </nav>
+            </div>
+        </header>
+
+    </div>
+
+</template>
+
+<style scoped>
+    .sticky-header {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+
+        z-index: 100;
+        /*Es über andere Inhalte liegen*/
+        position: sticky;
+
+        background-color: black;
+        color: white;
+    }
+
+    .row {
+        width: 100%;
+        margin: auto;
+        padding: 0.5rem;
+    }
+
+    nav {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 40px;
+        background-color: black;
+    }
+
+    a {
+        display: inline-block;
+        padding: 10px 15px;
+        line-height: 1;
+        color: white;
+        text-decoration: none;
+        transition: 0.5s ease-in;
+    }
+
+    a:hover {
+        border-bottom: 1px solid white;
+    }
+
+    button {
+        display: inline-block;
+        padding: 10px 15px;
+        line-height: 1;
+        background-color: transparent;
+        border: none;
+        color: white;
+        text-decoration: none;
+        transition: 0.5s ease-in;
+        width: auto;
+        cursor: pointer;
+    }
+
+    button:hover,
+    button:focus {
+        border-bottom: 1px solid white;
+        cursor: pointer;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 101;
+        left: 0;
+        top: 0;
+        overflow: auto;
+        padding-top: 5%;
+        padding-bottom: 3%;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        color: black;
+
+        width: 100%;
+        height: 100%;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto 15% auto;
+        /* 5% from the top, 15% from the bottom and centered*/
+        width: 80%;
+        border: 1% solid black;
+    }
+
+    .close {
+        /*position: it right outside of the modal;*/
+        position: absolute;
+        right: 25px;
+        top: 0;
+        color: black;
+        font-size: 35px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: red;
+        cursor: pointer;
+    }
+
+    .animate {
+        -webkit-animation: animatezoom 0.6s;
+        animation: animatezoom 0.6s;
+    }
+
+    @-webkit-keyframes animatezoom {
+        from {
+            -webkit-transform: scale(0);
+        }
+
+        to {
+            -webkit-transform: scale(1);
+        }
+    }
+
+    @keyframes animatezoom {
+        from {
+            transform: scale(0);
+        }
+
+        to {
+            transform: scale(1);
+        }
+    }
+
+    input {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border: 1px solid grey;
+        display: inline-block;
+        box-sizing: border-box;
+    }
+
+    button.modalBtn {
+        background: #1a1a1a;
+        color: white;
+        padding: 14px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    button.modalBtn:hover,
+    button.cancel:hover {
+        opacity: 0.8;
+    }
+</style>
