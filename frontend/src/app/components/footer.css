@@ -1,0 +1,32 @@
+hr{
+    width: 90%;
+}
+
+.links{
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+button{
+    appearance: none;
+    border: 0;
+    background: transparent;
+}
+ul{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+    color: black;
+    transition: 0.3s ease-in;
+    border-bottom: 1px solid transparent;
+    border-radius: 4px;
+}
+a:hover{
+    border-bottom: 1px solid black;
+}
+nav{
+    width: 100%;
+    text-align: center;
+}
