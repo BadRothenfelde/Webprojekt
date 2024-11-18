@@ -1,0 +1,36 @@
+<main>
+    <h1>Menu</h1>
+    <div class="content" style="flex-direction: column">
+        <h2> Main Course </h2>
+        <button type="button">Xia Long Bao!</button>
+        
+        <button (click)="toggleModal('log')" style="width: auto;"> Order! </button>
+        <p> Char Siu </p>
+        <p></p>
+    </div>
+
+    <div id="log" class="modal" [style.display]="modalVisible == 'log' ? 'block' : 'none'">
+
+        <form class="modal-content animate" action="/" method="post">
+            <h1> Login </h1>
+            <span (click)="toggleModal(null)" class="close" title="close Modal">&times;</span>
+
+            <div class="row" style="flex-direction: column">
+
+                <label for="name"><b> Benutzername </b></label>
+                <input type="text" placeholder="Benutzername" name="name">
+                <!--:value = "formData.email"  required @input = "formData.email = $event.target.value"-->
+                <label for="pass"><b> Passwort </b></label>
+                <input type="password" placeholder="Passwort" name="pass">
+                <!--:value = "formData.password"  required @input = "formData.password = $event.target.value"-->
+                <button type="button" class="modalBtn"> Login </button>
+
+            </div>
+            <div class="row">
+                <button type="button" style="margin:auto; width: 40%;" (click)="toggleModal(null)"> Cancel </button>
+                <a style="width: autos; text-align: center; float: right; margin: auto; width: 40%;" href="/"> Forgot password? </a>
+            </div>
+        </form>
+    </div>
+    <p></p>
+</main>
