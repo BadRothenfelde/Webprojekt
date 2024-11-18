@@ -1,36 +1,76 @@
 <main>
-    <h1>Menu</h1>
-    <div class="content" style="flex-direction: column">
-        <h2> Main Course </h2>
-        <button type="button">Xia Long Bao!</button>
-        
-        <button (click)="toggleModal('log')" style="width: auto;"> Order! </button>
-        <p> Char Siu </p>
+    <main>
+        <h1>Menu</h1>
+        <h2>Main Course</h2>
+
+        <!-- First block (Xia Long Bao) -->
+        <div
+            style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; border: 1px solid #ccc; padding: 20px; background-color: #f9f9f9; border-radius: 10px; width: 100%; max-width: 600px; margin: 0 auto;">
+            <button type="button"
+                style="display: flex; align-items: center; gap: 10px; padding: 10px; border: none; background: none; cursor: default; text-align: left; width: 100%; height: 100px;">
+                <img src="assets/Xialongbao.png" alt="Xia Long Bao"
+                    style="width: 100px; height: 100px; border-radius: 50%;">
+                <h2 style="margin: 0;">Xia Long Bao</h2>
+            </button>
+            <button (click)="toggleModal('log')"
+                style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; text-align: center; width: 100%; height: 40px;">
+                Order!
+            </button>
+        </div>
+
+        <!-- Second block (Chow Mein) -->
+        <div
+            style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; border: 1px solid #ccc; padding: 20px; background-color: #f9f9f9; border-radius: 10px; width: 100%; max-width: 600px; margin: 10px auto;">
+            <button type="button"
+                style="display: flex; align-items: center; gap: 10px; padding: 10px; border: none; background: none; cursor: default; text-align: left; width: 100%; height: 100px;">
+                <img src="assets/Chowmein.png" alt="Chow Mein" style="width: 100px; height: 100px; border-radius: 50%;">
+                <h2 style="margin: 0;">Chow Mein</h2>
+            </button>
+            <button (click)="toggleModal('log')"
+                style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; text-align: center; width: 100%; height: 40px;">
+                Order!
+            </button>
+        </div>
+
+        <div id="log" class="modal" [style.display]="modalVisible == 'log' ? 'block' : 'none'">
+            <form class="modal-content animate" action="/" method="post">
+                <h2>Additional Condiments</h2>
+                <span (click)="toggleModal(null)" class="close" title="close Modal">&times;</span>
+
+                <div>
+                    <ol style="list-style-type: none; padding-left: 0; margin: 0;">
+                        <li style="display: flex; align-items: center; justify-content: flex-start;">
+                            <input type="radio" name="addon" id="ChilliOil" value="ChilliOil"
+                                style="margin-right: 10px;">
+                            <label for="ChilliOil">Chilli Oil</label>
+                        </li>
+                        <li style="display: flex; align-items: center; justify-content: flex-start;">
+                            <input type="radio" name="addon" id="ChilliFlakes" value="ChilliFlakes"
+                                style="margin-right: 10px;">
+                            <label for="ChilliFlakes">Chilli Flakes</label>
+                        </li>
+                        <li style="display: flex; align-items: center; justify-content: flex-start;">
+                            <input type="radio" name="addon" id="LowSodiumSoySauce" value="LowSodiumSoySauce"
+                                style="margin-right: 10px;">
+                            <label for="LowSodiumSoySauce">Low Sodium Soy Sauce</label>
+                        </li>
+                    </ol>
+                </div>
+
+                <button type="button"
+                    style="margin:auto; width: 85%; background-color: #ff0000; color: rgb(0, 0, 0); border: none; border-radius: 5px; cursor: pointer; text-align: center; width: 100%; height: 40px;"
+                    class="modalBtn"> Put into Cart </button>
+
+                <div class="row">
+                    <button type="button" style="margin:auto; width: 40%;" (click)="toggleModal(null)"> Cancel </button>
+                    <a style="width: auto; text-align: center; float: right; margin: auto; width: 40%;" href="/">
+                        Forgot password?
+                    </a>
+                </div>
+            </form>
+        </div>
+
+
+
         <p></p>
-    </div>
-
-    <div id="log" class="modal" [style.display]="modalVisible == 'log' ? 'block' : 'none'">
-
-        <form class="modal-content animate" action="/" method="post">
-            <h1> Login </h1>
-            <span (click)="toggleModal(null)" class="close" title="close Modal">&times;</span>
-
-            <div class="row" style="flex-direction: column">
-
-                <label for="name"><b> Benutzername </b></label>
-                <input type="text" placeholder="Benutzername" name="name">
-                <!--:value = "formData.email"  required @input = "formData.email = $event.target.value"-->
-                <label for="pass"><b> Passwort </b></label>
-                <input type="password" placeholder="Passwort" name="pass">
-                <!--:value = "formData.password"  required @input = "formData.password = $event.target.value"-->
-                <button type="button" class="modalBtn"> Login </button>
-
-            </div>
-            <div class="row">
-                <button type="button" style="margin:auto; width: 40%;" (click)="toggleModal(null)"> Cancel </button>
-                <a style="width: autos; text-align: center; float: right; margin: auto; width: 40%;" href="/"> Forgot password? </a>
-            </div>
-        </form>
-    </div>
-    <p></p>
-</main>
+    </main>
