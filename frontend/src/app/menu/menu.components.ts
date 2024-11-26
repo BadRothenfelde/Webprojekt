@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'menu',
@@ -10,5 +11,9 @@ export class MenuComponent {
 
     toggleModal(modal: 'log' | null){
         this.modalVisible = modal;
-}
-}
+    }
+        constructor(private router: Router) {}
+        navigateToAllergy(): void {
+          this.router.navigate(['/allergy'])
+      }
+      }
