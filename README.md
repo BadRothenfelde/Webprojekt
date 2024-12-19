@@ -27,12 +27,12 @@ The system will utilize a QR code generator to provide each table with a unique 
 ### Serve Angular application on local machine
 
 1. Run `ng serve` within the **frontend** directory
-2. Navigate to the browser
+2. Navigate to the browser `http://localhost:4200`
 
 ### Serve Django application on local machine
 
-1. Navigate to the project directory
-2. Run `python manage.py runserver`
+1. Run `python manage.py runserver` within the **backend** directory
+2. Navigate to the browser `http://localhost:8000`
 
 ## Running Docker
 
