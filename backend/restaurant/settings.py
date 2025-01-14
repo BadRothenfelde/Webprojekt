@@ -25,12 +25,15 @@ SECRET_KEY = 'django-insecure-z%n2m=fvv@#kbz7ei!pmn8gc_!y7)y5u()9je3k41x6ioo_11e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "localhost:4200", "http://localhost:4200"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    #CORS
+    'corsheaders',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,10 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'test.apps.TestConfig',
-    'menue.apps.MenueConfig'
+    'menue.apps.MenueConfig',
+    'administration.apps.AdministrationConfig'
 ]
 
 MIDDLEWARE = [
+    #CORS
+    "corsheaders.middleware.CorsMiddleware",
+    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -50,7 +57,23 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+   
 ]
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:4200",
+    "http://localhost:4200"
+]
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'OPTIONS',
+]
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:4200',  # Add your frontend's origin
+    'http://127.0.0.1:4200',  # Add if using localhost with a different IP
+]
+
 
 ROOT_URLCONF = 'restaurant.urls'
 
