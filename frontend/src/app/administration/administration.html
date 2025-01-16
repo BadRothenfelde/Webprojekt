@@ -1,23 +1,88 @@
-<body>
-    <!-- Header -->
-    <header>
-      <h1>Admin Dashboard</h1>
-      <div class="user-info">Welcome, Admin</div>
-    </header>
-  
+<main>
     <!-- Sidebar -->
-    <nav class="sidebar">
+
+    <div class="sidebar">
       <ul>
-        <li><a href="#dashboard">Dashboard</a></li>
-        <li><a href="#users">User Management</a></li>
-        <li><a href="#settings">Settings</a></li>
-        <li><a href="#reports">Reports</a></li>
-        <li><a href="#logout">Logout</a></li>
+        <li><button (click)="toggleView('overview')">Dashboard</button></li>
+        <li><button (click)="getUsers(); toggleView('user'); ">User Management</button></li>
+        <li><button (click)="getMenue(); toggleView('menu')">Menu Management</button></li>
+        <li><button>Seating Management</button></li>
+        <li><button>Logout</button></li>
       </ul>
-    </nav>
+    </div>
+    <!-- Menü -->
+    <div *ngIf="tabGroup=='menu'" class="main-content">
+      <section id="dashboard">
+        <h2>Menu Management</h2>
+        <p>View and manage menu items.</p>
+      </section>
   
-    <!-- Main Content -->
-    <main class="main-content">
+      <section>
+        
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Bild</th>
+              <th>Preis</th>
+              <th>Beschreibung</th>
+              <th>Allergien</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of menuData">
+              <td>{{row.id}}</td>
+              <td>{{row.name}}</td>
+              <td>{{row.surname}}</td>
+              <td><img src={{row.picture}} width=50p height=50p/></td>
+              <td>{{row.description}}</td>
+              <td>{{row.allergies}}</td>
+              <td>None Yet</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+    <!-- User -->
+    <div *ngIf="tabGroup=='user'" class="main-content">
+      <section id="dashboard">
+        <h2>User Management</h2>
+        <p>View and manage user accounts.</p>
+      </section>
+  
+      <section>
+        
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Vorame</th>
+              <th>Nachname</th>
+              <th>Bild</th>
+              <th>Password</th>
+              <th>Beschreibung</th>
+              <th>Berechtigung</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of usersData">
+              <td>{{row.id}}</td>
+              <td>{{row.name}}</td>
+              <td>{{row.surname}}</td>
+              <td><img src={{row.picture}} width=50p height=50p/></td>
+              <td>No</td>
+              <td>{{row.description}}</td>
+              <td>{{row.lvl}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <!-- Overview of Functions -->
+    <div *ngIf="tabGroup=='overview'" class="main-content">
       <section id="dashboard" class="card">
         <h2>Dashboard</h2>
         <p>Overview of system statistics and recent activities.</p>
@@ -37,5 +102,6 @@
         <h2>Reports</h2>
         <p>Generate and view reports for various metrics.</p>
       </section>
-    </main>
-  </body>
+    </div>
+    
+</main>

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-
   
 @Component({
   selector: 'sticky-header',
@@ -14,7 +13,10 @@ export class HeaderComponent {
     admin = false;
     logged = false;
     user = {"id": null, "name": null, "surname": null, "picture": null, "description": null, "lvl": 0};
+    csrftoken: String = "";
     isPlatFormBrowser
+
+    
     constructor(@Inject(PLATFORM_ID) platformId: Object) {
       this.isPlatFormBrowser = isPlatformBrowser(platformId);
     }
@@ -33,7 +35,6 @@ export class HeaderComponent {
 
           if(this.user["lvl"] > 1)
             this.admin = true
-          console.info(this.user)
         }
       }
     }
@@ -46,36 +47,29 @@ export class HeaderComponent {
 
 
     async verify(name: String, pass: String): Promise<any>{
-      // Retrieve CSRF token from the cookie
-      const csrfToken = this.getCookie('csrftoken');
-
-      // Prepare the headers object
-      const headers: HeadersInit = {
-          'Content-Type': 'application/json'
-      };
-
-     //  Only add the CSRF token if it's not null
-      /*if (csrfToken) {
-          headers['X-CSRFToken'] = csrfToken;
-      } else {
-          console.error("CSRF token is missing or invalid.");
-      }*/
-
+ 
       let response = await fetch("http://127.0.0.1:8000/administration/", {
-        headers: headers,
+        headers: {'Content-Type': 'application/json'},
         method: 'POST',
-        body: JSON.stringify({"name": name, "password": pass})
+        body: JSON.stringify({"name": name, "password": pass}),
+        credentials: "include"
     })
-    
+    let cookie = await response.json()
+    let d:Date = new Date();
     if(response.ok)
-      this.user = await response.json()
       
-      document.cookie = "user="+JSON.stringify(this.user)
-      console.info(document.cookie)
+      d.setTime(d.getTime() + 15 * 60 * 1000);
+      let expires:string = `expires=${d.toUTCString()}`;
+      this.user = cookie
+      document.cookie = "user="+JSON.stringify(this.user)+`;${expires};path=/`
+
       this.logged = true
 
       if(this.user["lvl"] > 1)
         this.admin = true
+
+      this.toggleModal(null)
+      window.location.href="/administration"
     }
 
 
