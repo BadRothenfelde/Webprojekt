@@ -1,0 +1,14 @@
+h2 {
+    text-align: center;
+  }
+  
+  p {
+    font-size: 14px;
+    margin: 8px 0;
+  }
+  
+  button {
+    display: block;
+    margin: 20px auto;
+  }
+  

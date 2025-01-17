@@ -1,0 +1,72 @@
+.reservation-form {
+    margin-bottom: 20px;
+  }
+  
+  .reservation-form label {
+    margin-right: 10px;
+  }
+  
+  .reservation-form input,
+  .reservation-form select {
+    margin-right: 20px;
+  }
+  
+  .reservation-form select {
+    width: 200px; /* Breite des Dropdowns */
+  }
+  
+  .time-dropdown {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Zwei Spalten */
+    grid-gap: 5px; /* Abstand zwischen den Optionen */
+    padding: 5px;
+    background-color: white;
+    border-radius: 5px;
+  }
+  
+  .time-dropdown option {
+    white-space: nowrap; /* Verhindert, dass der Text umbricht */
+  }
+  
+  .seating-area {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-color: #f0f0f0;
+    margin-top: 20px;
+  }
+  
+  .table {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: green;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .table.booked {
+    background-color: red;
+    cursor: not-allowed;
+  }
+  
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+  
+  .popup button {
+    margin: 5px;
+  }
+  

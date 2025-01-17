@@ -1,0 +1,6 @@
+<h2>Tischinformationen</h2>
+<p><strong>ID:</strong> {{ data.id }}</p>
+<p><strong>Typ:</strong> {{ data.type === 'square' ? 'Quadratisch' : 'Rechteckig' }}</p>
+<p><strong>Sitzplätze:</strong> {{ data.seats.min }}-{{ data.seats.max }} Personen</p>
+<p><strong>Status:</strong> {{ data.booked ? 'Reserviert' : 'Verfügbar' }}</p>
+<button mat-button mat-dialog-close>Schließen</button>

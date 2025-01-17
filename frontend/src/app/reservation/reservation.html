@@ -1,0 +1,31 @@
+<div class="reservation-form">
+  <label for="date">Datum:</label>
+  <input id="date" type="date" [(ngModel)]="selectedDate" />
+
+  <label for="time">Uhrzeit:</label>
+  <select id="time" [(ngModel)]="selectedTime" class="time-dropdown">
+    <option *ngFor="let time of availableTimes" [value]="time">{{ time }}</option>
+  </select>
+</div>
+
+<div class="seating-area">
+  <div
+    *ngFor="let table of tables"
+    class="table"
+    [ngClass]="{ booked: table.booked, available: !table.booked }"
+    [style.top]="table.position.top"
+    [style.left]="table.position.left"
+    (click)="openTablePopup(table)"
+  >
+    <span>{{ table.id }}</span>
+  </div>
+</div>
+
+<div class="popup" *ngIf="selectedTable">
+  <h2>Tisch {{ selectedTable.id }}</h2>
+  <p>Kapazität: {{ selectedTable.seats.min }}-{{ selectedTable.seats.max }} Personen</p>
+  <p>Gewähltes Datum: {{ selectedDate || 'Noch nicht ausgewählt' }}</p>
+  <p>Gewählte Uhrzeit: {{ selectedTime || 'Noch nicht ausgewählt' }}</p>
+  <button (click)="bookTable()">Diesen Tisch buchen</button>
+  <button (click)="closePopup()">Schließen</button>
+</div>
