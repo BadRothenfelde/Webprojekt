@@ -7,9 +7,46 @@
         <li><button (click)="getUsers(); toggleView('user'); ">User Management</button></li>
         <li><button (click)="getMenue(); toggleView('menu')">Menu Management</button></li>
         <li><button>Seating Management</button></li>
-        <li><button>Logout</button></li>
+        <li><button (click)="logout()">Logout</button></li>
       </ul>
     </div>
+    <!-- New Item Menu Modal-->
+    <div *ngIf="tabModal=='addItem'" class="modal">
+      <div  class="modal-content"> 
+        <section>
+          <h1>Add Item Form</h1>
+          <span (click)="toggleModal(null)" class="close" title="close Modal">&times;</span>
+        </section>
+        <section>
+          <form id="itemForm" (ngSubmit)="addMenu($event)" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" [(ngModel)]="menue.name" name="name" placeholder="Enter dish name" required>
+            </div>
+            <div class="form-group">
+              <label for="dishPicture">Dish Picture</label>
+              <input type="file" (change)="selectedImage($event)" name="dishPicture" accept="image/*" required>
+            </div>
+            <div class="form-group">
+              <label for="price">Preis</label>
+              <input type="number" min="1" step="any" [(ngModel)]="menue.price" name="price" placeholder="Enter the Price" required>
+            </div>           
+            <div class="form-group">
+              <label for="description">Beschreibung</label>
+              <input type="text" [(ngModel)]="menue.description" name="description" placeholder="Enter a description">
+            </div>
+            <div class="form-group">
+              <label for="allergic">Allergien</label>
+              <input type="text" [(ngModel)]="menue.allergies" name="allergic" placeholder="Enter the allergies" required>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="submit-btn">Add Item</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+    
     <!-- Menü -->
     <div *ngIf="tabGroup=='menu'" class="main-content">
       <section id="dashboard">
@@ -18,7 +55,6 @@
       </section>
   
       <section>
-        
         <table>
           <thead>
             <tr>
@@ -35,25 +71,77 @@
             <tr *ngFor="let row of menuData">
               <td>{{row.id}}</td>
               <td>{{row.name}}</td>
-              <td>{{row.surname}}</td>
-              <td><img src={{row.picture}} width=50p height=50p/></td>
+              <td><img src={{row.picture}} width=50px height=50px/></td>
+              <td>{{row.price}} € </td>
               <td>{{row.description}}</td>
               <td>{{row.allergies}}</td>
-              <td>None Yet</td>
+              <td>
+                <button (click)="removeItem(row.id)">
+                  <span style="font-size: 20px; font-weight: bold;">&#8722;</span>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
+        <button (click)="toggleModal('addItem')">
+          <span style="font-size: 20px; font-weight: bold;">&#43;</span>
+        </button>
       </section>
+    </div>
+
+    <!-- New Item User Modal-->
+    <div *ngIf="tabModal=='regist'" class="modal" >
+      <div  class="modal-content"> 
+        <section>
+          <h1>Registration Form</h1>
+          <span (click)="toggleModal(null)" class="close" title="close Modal">&times;</span>
+        </section>
+        <section>
+          <form (ngSubmit)="addUser($event)" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="vorname">Vorname</label>
+              <input type="text"  [(ngModel)]="user.vorname" name="vorname" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+              <label for="nachname">Nachname</label>
+              <input type="text" [(ngModel)]="user.nachname" name="nachname" placeholder="Enter your surname" required>
+            </div>
+            <div class="form-group">
+              <label for="profilePicture">Profile Picture</label>
+              <input type="file" (change)="selectedProfile($event)" name="profilePicture" accept="image/*" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" [(ngModel)]="user.password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+              <label for="beschreibung">Beschreibung</label>
+              <input type="text" [(ngModel)]="user.beschreibung" name="beschreibung" placeholder="Enter a desciption">
+            </div>
+            <div class="form-group">
+              <label for="lvl">Berechtigung</label>
+              <select [(ngModel)]="user.lvl" name="lvl" required>
+                <option value=1 selected>Nutzer</option>
+                <option value=2>Admin</option>
+                <option value=2>Master</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="submit-btn">Register</button>
+            </div>
+          </form>
+        </section>
+      </div>
     </div>
     <!-- User -->
     <div *ngIf="tabGroup=='user'" class="main-content">
+      
       <section id="dashboard">
         <h2>User Management</h2>
         <p>View and manage user accounts.</p>
       </section>
   
-      <section>
-        
+      <section>      
         <table>
           <thead>
             <tr>
@@ -64,6 +152,7 @@
               <th>Password</th>
               <th>Beschreibung</th>
               <th>Berechtigung</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -75,12 +164,20 @@
               <td>No</td>
               <td>{{row.description}}</td>
               <td>{{row.lvl}}</td>
+              <td>
+                <button (click)="removeUser(row.id)">
+                  <span style="font-size: 20px; font-weight: bold;">&#8722;</span>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
+        <button (click)="toggleModal('regist')">
+          <span style="font-size: 20px; font-weight: bold;">&#43;</span>
+        </button>
       </section>
     </div>
-
+    
     <!-- Overview of Functions -->
     <div *ngIf="tabGroup=='overview'" class="main-content">
       <section id="dashboard" class="card">

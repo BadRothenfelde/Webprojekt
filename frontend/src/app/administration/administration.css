@@ -1,19 +1,109 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  /* Sidebar */
-  .sidebar {
-    position: absolute;
-    left: 0;
-    color: #fff;
-    padding: 20px;
-    width: 15%;
-    border-right: 1px solid black;
+.form-group {
+  margin-bottom: 15px;
+}
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+input:focus, select:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
+}
+table{
+  position: null;
+  margin-top: 30px;
+  width: 100%;
+  align-items: center;
+  text-align: left;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
+  button {
+    padding: 10px 15px;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    color: black;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 1rem;
+    border-radius: 4px;
+    border-bottom: 1px solid transparent;
+    text-align: center
   }
-  .sidebar ul li {
+  
+  button:hover, button:focus{
+      color: red;
+  }
+}
+th, td {
+  padding: 2px 4px;
+  border-right: 1px solid #dddddd;
+}
+tr{
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #dddddd;
+}
+.modal-content{
+  position: relative;
+  padding-top: 25px;
+  width: 90%;
+}
+  
+span.close {
+  position: absolute;
+  top: 0;
+  right: 5%;
+  color: black;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover, .close:focus{
+    color: red;
+}
+button {
+  padding: 10px 15px;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  color: black;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 1rem;
+  border-radius: 4px;
+  border-bottom: 1px solid transparent;
+  text-align: center
+}
+
+button:hover {
+    border-bottom: 1px solid black;
+}
+/* Sidebar */
+.sidebar {
+  position: absolute;
+  left: 0;
+  color: #fff;
+  padding: 20px;
+  width: 15%;
+  border-right: 1px solid black;
+
+ 
+  ul li {
     list-style: none;
     margin: 15px 0;
     color: black;
@@ -24,35 +114,20 @@
     border-radius: 5px;
     transition: background-color 0.3s ease;
   }
-
-  button {
-    padding: 10px 15px;
-    width: 95%;
-    background-color: transparent;
-    border: none;
-    color: black;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-size: 1rem;
-    border-radius: 4px;
-    border-bottom: 1px solid transparent;
 }
 
-button:hover {
-    border-bottom: 1px solid black;
+
+/* Main Content */
+.main-content {
+  margin-left: 15%;
+  padding: 80px 20px 20px 20px;
+  width: 80%;
+  min-height: 50vh
 }
 
-  /* Main Content */
-  .main-content {
-    margin-left: 15%;
-    padding: 80px 20px 20px 20px;
-    width: 80%;
-    min-height: 50vh
-  }
-
-  .card {
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
+.card {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}

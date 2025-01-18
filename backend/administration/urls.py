@@ -6,5 +6,8 @@ urlpatterns = [
     #Hauptspeise Menü Liste
     path("", views.verify, name="Verifizierung"),
 #    path("verify/", views.set_csrf_token, name="Cross Site"),
-    path("users/", views.users, name="Nutzer")
+    path("users/", views.users, name="Nutzer"),
+    path("registry/", views.addUser, name="Regristrierung"),
+    path("purge/", views.removeUser, name="Löschung von Nutzern"),
+    path("<pic_name>/", views.profilePic, name="Profil"),
 ]

@@ -7,6 +7,7 @@ import { MenuComponent } from './menu/menu.components';
 import { AllergyComponent } from './allergy/allergy.component';
 import { AdministrationComponent } from './administration/administration.component';
 import { AdministrationModule } from './administration/administration.module';
+import { MenuModule } from './menu/menu.module';
 
 export const routes: Routes = [
     {path: "home", component: LandingComponent },
@@ -19,7 +20,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [AdministrationModule, RouterModule. forRoot(routes)],
+    imports: [AdministrationModule, MenuModule, RouterModule. forRoot(routes)],
     exports: [RouterModule]
 })
 export class AppRoutingModuke { }
