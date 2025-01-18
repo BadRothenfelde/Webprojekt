@@ -6,6 +6,7 @@ import { ImprintComponent} from "./imprint/imprint.component"
 import { MenuComponent } from './menu/menu.components';
 import { AllergyComponent } from './allergy/allergy.component';
 import { ReservationComponent } from './reservation/reservation.component';
+import { GallerieComponent } from './gallerie/gallerie.component';
 
 
 export const routes: Routes = [
@@ -13,7 +14,8 @@ export const routes: Routes = [
     {path: "about", component: AboutComponent },
     {path: "imprint", component: ImprintComponent },
     {path: "menu", component: MenuComponent},
-    { path: "reservation", component: ReservationComponent },
+    {path: "reservation", component: ReservationComponent },
+    {path: "gallerie", component: GallerieComponent},
     {path: "allergy", component: AllergyComponent},
     {path: "", redirectTo: "/home", pathMatch: "full" },
 ];

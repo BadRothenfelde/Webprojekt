@@ -1,7 +1,131 @@
-h1 {
-    font-size: 3.125rem;
+
+/* Hero-Bereich */
+.hero {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
 }
 
-.w50{
-    width: 50%;
+/* Das Hero-Bild in Originalgröße */
+.hero img {
+    max-width: none; /* Stellt sicher, dass das Bild nicht skaliert wird */
+    max-height: none; /* Erlaubt die Originalhöhe */
+    width: auto; /* Beibehaltung der natürlichen Breite */
+    height: auto; /* Beibehaltung der natürlichen Höhe */
+    display: block;
+}
+
+/* Der Text über dem Hero-Bild */
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* Weißer Text für den gesamten Bereich */
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    width: 70%;
+}
+
+/* Überschrift "Willkommen bei Rizztaurant" in Weiß */
+.hero-text h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    color: white !important; /* Erzwingt die weiße Farbe */
+}
+
+/* Untertitel in Weiß */
+.hero-text p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: white !important; /* Erzwingt die weiße Farbe */
+}
+
+
+/* Bero-Bereich */
+.bero {
+    position: relative; /* Erlaubt absolute Positionierung für das Overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+/* Hauptbild im Bero-Bereich */
+.bero-bg {
+    width: 100%; /* Das Bild nimmt die volle Breite ein */
+    height: auto;
+    display: block;
+}
+
+/* Overlay-Bild: Klein und rechts über dem Hauptbild */
+.bero-overlay {
+    position: absolute; /* Positioniert das Bild relativ zum `.bero`-Container */
+    top: 20%; /* Position nach unten verschieben */
+    right: 10%; /* Rechts positionieren */
+    width: 800px; /* Verkleinert das Overlay-Bild */
+    height: auto;
+    opacity: 1; /* Falls du eine leichte Transparenz möchtest, setze es auf 0.8 */
+}
+
+/* Der Text über dem Bero-Bild */
+.bero-text {
+    position: absolute;
+    bottom: 50%;
+    left: 30%;
+    transform: translateX(-50%);
+    color: white !important; /* Erzwingt weiße Schrift */
+    text-align: left;
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+}
+
+/* Spezifische Anpassung für den Titel */
+.bero-text h1 {
+    color: white !important;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+/* Spezifische Anpassung für den Absatz */
+.bero-text p {
+    color: white !important;
+    font-size: 1.2rem;
+}
+
+
+/* Button-Styling */
+.custom-button {
+    display: inline-block;
+    padding: 14px 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, opacity 0.3s;
+}
+
+/* Hover-Effekt */
+.custom-button:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+}
+
+/* Inhaltsbereich */
+.content {
+    text-align: center;
+    padding: 20px;
 }
