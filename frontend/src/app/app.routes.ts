@@ -8,13 +8,17 @@ import { AllergyComponent } from './allergy/allergy.component';
 import { AdministrationComponent } from './administration/administration.component';
 import { AdministrationModule } from './administration/administration.module';
 import { MenuModule } from './menu/menu.module';
+import { ReservationComponent } from './reservation/reservation.component';
+import { GallerieComponent } from './gallerie/gallerie.component';
 
 export const routes: Routes = [
     {path: "home", component: LandingComponent },
     {path: "about", component: AboutComponent },
     {path: "imprint", component: ImprintComponent },
     {path: "menu", component: MenuComponent},
+    {path: "gallerie", component: GallerieComponent},
     {path: "allergy", component: AllergyComponent },
+    {path: "reservation", component: ReservationComponent},
     {path: "administration", component: AdministrationComponent },
     {path: "", redirectTo: "/home", pathMatch: "full" }
 ];
