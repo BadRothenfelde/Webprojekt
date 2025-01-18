@@ -12,10 +12,14 @@
             <a href="/reservation" aria-label="reservation"> Reservation </a>
             <a href="/about" aria-label="About"> About </a>
             
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> origin
             <!-- <a href="/member aria-label="Member"> Mitglied </a> -->
-            <button class="navBtn" (click)="toggleModal('log')" style="width: auto;"> Example Modal </button>
-
+            <button *ngIf="!logged" class="navBtn" (click)="toggleModal('log')" style="width: auto;"> Example Modal </button>
+            <a *ngIf="admin" href="/administration" aria-label="Admin"> Admin </a>
 
             <!-- Modal log -->
             <div id="log" class="modal" [style.display]="modalVisible == 'log' ? 'block' : 'none'">
@@ -27,18 +31,16 @@
                     <div class="row" style="flex-direction: column">
 
                         <label for="name"><b> Benutzername </b></label>
-                        <input type="text" placeholder="Benutzername" name="name">
-                        <!--:value = "formData.email"  required @input = "formData.email = $event.target.value"-->
+                        <input type="text" placeholder="Benutzername" name="name" #username>
                         <label for="pass"><b> Passwort </b></label>
-                        <input type="password" placeholder="Passwort" name="pass">
-                        <!--:value = "formData.password"  required @input = "formData.password = $event.target.value"-->
-                        <button type="button" class="modalBtn"> Login </button>
+                        <input type="password" placeholder="Passwort" name="pass" #password>
+                        <button type="button" class="modalBtn" (click)="verify(username.value, password.value)"> Login </button>
 
                     </div>
                     <div class="row">
                         <button type="button" style="margin:auto; width: 40%;" (click)="toggleModal(null)"> Cancel
                         </button>
-                        <a style="width: autos; text-align: center; float: right; margin: auto; width: 40%;" href="/">
+                        <a style="text-align: center; margin: auto; width: 40%; padding-bottom: 5px" href="/">
                             Forgot password? </a>
                     </div>
                 </form>
