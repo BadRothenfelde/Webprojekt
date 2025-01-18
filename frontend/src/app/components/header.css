@@ -21,13 +21,8 @@
 
 
 h1 {
-<<<<<<< HEAD
     font-size: 2.125rem; /* Smaller header font */
     color: rgb(226, 223, 223);
-=======
-    font-size: 2.125rem;
-    color: black;
->>>>>>> origin
     text-transform: uppercase; /* For a more elegant touch */
     margin-right: auto; /* Push the nav to the right */
 }
