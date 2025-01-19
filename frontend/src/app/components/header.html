@@ -1,17 +1,20 @@
 <div class="sticky-header">
-
     <div class="row">
-        <h1 style="z-index: 2; margin-left: 5%"> Rizztaurant </h1>
+        <!-- Logo links -->
+        <img src="assets/therizzler.png" alt="Logo" class="logo" />
+
+        <!-- Titel -->
+        <h1 style="z-index: 2;"> Rizztaurant </h1>
+        
         <nav aria-label="Marin Navigation Links">
             <a href="/" aria-label="Home"> Home </a>
-            <a href="/menu" aria-label="Menu"> Menu </a>
+            <a href="/menu" aria-label="Menu"> Speissekarte </a>
             <a href="/allergy" aria-label="Allergy">Allergies</a>
             <a href="/gallerie" aria-label="Gallerie"> Gallerie </a>
-            <a href="/imprint" aria-label="Imprint"> Impressum </a>
             <a href="/reservation" aria-label="reservation"> Reservation </a>
             <a href="/about" aria-label="About"> About </a>
+
             
-            <!-- <a href="/member aria-label="Member"> Mitglied </a> -->
             <button *ngIf="!logged" class="navBtn" (click)="toggleModal('log')" style="width: auto;"> Example Modal </button>
             <a *ngIf="admin" href="/administration" aria-label="Admin"> Admin </a>
 

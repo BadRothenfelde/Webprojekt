@@ -1,7 +1,52 @@
-h1 {
-    font-size: 3.125rem;
+/* Allgemeine Seite */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Weißer Hintergrund */
 }
 
-.w50{
-    width: 50%;
+/* Abschnitt für den Hauptinhalt */
+main {
+    margin-top: 20px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Der Inhalt wird nach oben ausgerichtet */
+    align-items: flex-start; /* Der Inhalt wird nach links ausgerichtet */
+}
+
+/* Stil für den Titel (mittig ausgerichtet) */
+h1 {
+    font-size: 3.125rem; /* Große Schrift für den Haupttitel */
+    text-align: center; /* Text mittig ausrichten */
+    color: rgb(53, 38, 26); /* Dunkles Braun */
+    margin-bottom: 20px;
+    width: 100%; /* Damit der Titel die gesamte Breite einnimmt */
+    text-align: center; /* Mit dieser Eigenschaft wird der Titel mittig auf der Seite angezeigt */
+}
+
+
+/* Untertitel */
+p {
+    font-size: 1.2rem; /* Mittlere Schriftgröße */
+    text-align: left; /* Text links ausrichten */
+    color: rgb(53, 38, 26); /* Dunkles Braun */
+    margin-bottom: 40px;
+    line-height: 1.8; /* Zeilenhöhe für bessere Lesbarkeit */
+}
+
+/* Stil für den Abschnitt */
+.content {
+    width: 80%;
+    margin: auto;
+}
+
+/* Stil für den Textbereich */
+section.intro {
+    padding: 50px 20px;
+    text-align: left; /* Text links ausrichten */
+    background-color: rgb(255, 255, 255); /* Weißer Hintergrund für den Text */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+    border-radius: 10px; /* Abgerundete Ecken */
 }

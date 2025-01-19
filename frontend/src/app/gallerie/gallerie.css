@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    background-color: rgb(30, 20, 10); /* Dunkleres Braun */
 }
 
 /* Der Header bleibt exakt wie zuvor */
@@ -18,37 +18,15 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Navigation im Header */
-.navigation ul {
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
-    padding: 0;
-}
-
-.navigation ul li {
-    margin: 0 15px;
-}
-
-.navigation ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-    text-transform: uppercase;
-    padding: 8px 12px;
-}
-
-.navigation ul li a:hover {
-    border-bottom: 2px solid white;
-}
-
 /* Abstand für den Hauptinhalt (wegen sticky Header) */
 main {
-    margin-top: 60px; /* Korrektur, damit der Header den Inhalt nicht überdeckt */
+    margin-top: 80px; /* Korrektur für mehr Platz oben */
+    margin-bottom: 60px; /* Zusätzlicher Platz unten */
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    padding: 20px; /* Fügt etwas Innenabstand hinzu */
 }
 
 /* Grid-Galerie mit genau 3 Bildern pro Reihe, perfekt mittig */

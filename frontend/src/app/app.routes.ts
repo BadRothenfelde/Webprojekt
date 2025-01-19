@@ -11,6 +11,8 @@ import { MenuModule } from './menu/menu.module';
 import { ReservationComponent } from './reservation/reservation.component';
 import { GallerieComponent } from './gallerie/gallerie.component';
 
+
+
 export const routes: Routes = [
     {path: "home", component: LandingComponent },
     {path: "about", component: AboutComponent },
@@ -27,4 +29,4 @@ export const routes: Routes = [
     imports: [AdministrationModule, MenuModule, RouterModule. forRoot(routes)],
     exports: [RouterModule]
 })
-export class AppRoutingModuke { }
+export class AppRoutingModule { }

@@ -1,4 +1,3 @@
-
 /* Hero-Bereich */
 .hero {
     position: relative;
@@ -25,7 +24,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white; /* Weißer Text für den gesamten Bereich */
+    color: white;
     text-align: center;
     background: rgba(0, 0, 0, 0.6);
     padding: 20px;
@@ -37,20 +36,19 @@
 .hero-text h1 {
     font-size: 2.5rem;
     margin: 0;
-    color: white !important; /* Erzwingt die weiße Farbe */
+    color: white !important;
 }
 
 /* Untertitel in Weiß */
 .hero-text p {
     font-size: 1.2rem;
     margin-top: 10px;
-    color: white !important; /* Erzwingt die weiße Farbe */
+    color: white !important;
 }
-
 
 /* Bero-Bereich */
 .bero {
-    position: relative; /* Erlaubt absolute Positionierung für das Overlay */
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,19 +59,19 @@
 
 /* Hauptbild im Bero-Bereich */
 .bero-bg {
-    width: 100%; /* Das Bild nimmt die volle Breite ein */
+    width: 100%;
     height: auto;
     display: block;
 }
 
 /* Overlay-Bild: Klein und rechts über dem Hauptbild */
 .bero-overlay {
-    position: absolute; /* Positioniert das Bild relativ zum `.bero`-Container */
-    top: 20%; /* Position nach unten verschieben */
-    right: 10%; /* Rechts positionieren */
-    width: 800px; /* Verkleinert das Overlay-Bild */
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 800px;
     height: auto;
-    opacity: 1; /* Falls du eine leichte Transparenz möchtest, setze es auf 0.8 */
+    opacity: 1;
 }
 
 /* Der Text über dem Bero-Bild */
@@ -82,7 +80,7 @@
     bottom: 50%;
     left: 30%;
     transform: translateX(-50%);
-    color: white !important; /* Erzwingt weiße Schrift */
+    color: white;
     text-align: left;
     padding: 20px;
     border-radius: 10px;
@@ -91,17 +89,14 @@
 
 /* Spezifische Anpassung für den Titel */
 .bero-text h1 {
-    color: white !important;
     font-size: 2rem;
     margin-bottom: 10px;
 }
 
 /* Spezifische Anpassung für den Absatz */
 .bero-text p {
-    color: white !important;
     font-size: 1.2rem;
 }
-
 
 /* Button-Styling */
 .custom-button {
@@ -127,5 +122,16 @@
 /* Inhaltsbereich */
 .content {
     text-align: center;
-    padding: 20px;
+    padding: 0;  /* Entfernt jegliche Polsterung */
+    margin: 0;   /* Entfernt den Standardabstand */
+    width: 100vw;  /* Volle Breite des Viewports */
+    height: 100vh; /* Volle Höhe des Viewports */
+}
+
+/* Bild im Inhaltsbereich - auf volle Breite und Höhe ausfüllen */
+.content img {
+    width: 100vw;  /* Bild füllt die volle Breite des Viewports */
+    height: 100vh; /* Bild füllt die volle Höhe des Viewports */
+    object-fit: cover; /* Bild wird zugeschnitten, um den gesamten Bereich zu füllen */
+    display: block;  /* Verhindert, dass das Bild als Inline-Element angezeigt wird */
 }
