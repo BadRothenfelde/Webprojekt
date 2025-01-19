@@ -23,4 +23,5 @@ urlpatterns = [
     path("menue/", include("menue.urls")),
     path("seating/", include("seating.urls"))
  # Verknüpfung mit `buche_tisch`-View
+    path("administration/", include("administration.urls"))
 ]
