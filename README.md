@@ -36,7 +36,8 @@ The system will utilize a QR code generator to provide each table with a unique 
 
 ## Running Docker
 
-Docker coming for later
+1. Run `docker compose up` within the **top** directory
+2. Navigate to the browser `http://localhost:4200`
 
 ## Feature Overview
 
