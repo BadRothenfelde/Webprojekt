@@ -13,5 +13,3 @@ services:
       - "4200:4200"
     depends_on:
       - backend
-    environment:
-      - APP ENV=production
