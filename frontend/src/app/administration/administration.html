@@ -68,19 +68,52 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let row of menuData">
-              <td>{{row.id}}</td>
-              <td>{{row.name}}</td>
-              <td><img src={{row.picture}} width=50px height=50px/></td>
-              <td>{{row.price}} € </td>
-              <td>{{row.description}}</td>
-              <td>{{row.allergies}}</td>
-              <td>
-                <button (click)="removeItem(row.id)">
-                  <span style="font-size: 20px; font-weight: bold;">&#8722;</span>
-                </button>
-              </td>
-            </tr>
+            <ng-container *ngFor="let row of menuData">
+              <tr *ngIf="menue.id != null && row.id == menue.id; else dataDisplay">
+                <td>{{row.id}}</td>
+                <td>
+                  <input type="text" [(ngModel)]="menue.name" name="name" [placeholder]="row.name">
+                </td>
+                <td>
+                  <input type="file" (change)="selectedImage($event)" name="dishPicture" accept="image/*">
+                </td>
+                <td>
+                  <input type="number" min="1" step="any" [(ngModel)]="menue.price" name="price" [placeholder]="row.price">
+                </td>
+                <td>
+                  <input type="text" [(ngModel)]="menue.description" name="description" [placeholder]="row.description">
+                </td>
+                <td>
+                  <input type="text" [(ngModel)]="menue.allergies" name="allergic" [placeholder]="row.allergies">
+                </td>
+                <td style="display: flex; flex-direction: row;">
+                  <button style="width: 50%!" (click)="cancelChangeMenu()">
+                    <span style="font-size: 20px; font-weight: bold;">&#10539;</span>
+                  </button>
+                  <button style="width: 50%!" (click)="changeMenu()">
+                    <span style="font-size: 20px; font-weight: bold;">&#10003;</span>
+                  </button>
+                </td>
+              </tr>
+              <ng-template #dataDisplay>
+                <tr>
+                  <td>{{row.id}}</td>
+                  <td>{{row.name}}</td>
+                  <td><img src={{row.picture}} width=50px height=50px/></td>
+                  <td>{{row.price}} € </td>
+                  <td>{{row.description}}</td>
+                  <td>{{row.allergies}}</td>
+                  <td style="display: flex; flex-direction: row;">
+                    <button style="width: 50%!" (click)="removeItem(row.id)">
+                      <span style="font-size: 20px; font-weight: bold;">&#8722;</span>
+                    </button>
+                    <button style="width: 50%!" (click)="chooseChangeMenu(row.id)">
+                      <span style="font-size: 20px; font-weight: bold;">&#9998;</span>
+                    </button>
+                  </td>
+                </tr>
+              </ng-template>
+            </ng-container>
           </tbody>
         </table>
         <button (click)="toggleModal('addItem')">
@@ -123,7 +156,7 @@
               <select [(ngModel)]="user.lvl" name="lvl" required>
                 <option value=1 selected>Nutzer</option>
                 <option value=2>Admin</option>
-                <option value=2>Master</option>
+                <option value=3>Master</option>
               </select>
             </div>
             <div class="form-group">
@@ -156,20 +189,54 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let row of usersData">
-              <td>{{row.id}}</td>
-              <td>{{row.name}}</td>
-              <td>{{row.surname}}</td>
-              <td><img src={{row.picture}} width=50p height=50p/></td>
-              <td>No</td>
-              <td>{{row.description}}</td>
-              <td>{{row.lvl}}</td>
-              <td>
-                <button (click)="removeUser(row.id)">
-                  <span style="font-size: 20px; font-weight: bold;">&#8722;</span>
-                </button>
-              </td>
-            </tr>
+            <ng-container *ngFor="let row of usersData">
+              <tr *ngIf="user.id != null && row.id == user.id; else dataDisplay">
+                <td>{{row.id}}</td>
+                <td>
+                  <input type="text" [(ngModel)]="user.vorname" name="vorname" [placeholder]="row.name">
+                </td>
+                <td>
+                  <input type="text" [(ngModel)]="user.nachname" name="nachname" [placeholder]="row.surname">
+                </td>
+                <td>
+                  <input type="file"(change)="selectedProfile($event)" name="profilePicture" accept="image/*">    
+                </td>
+                <td>
+                  <input type="password" [(ngModel)]="user.password" name="password" placeholder="Password">
+                </td>
+                <td>
+                  <input type="text" [(ngModel)]="user.beschreibung" name="beschreibung" [placeholder]="row.description">
+                </td>
+                <td>{{row.lvl}}</td>
+                <td style="display: flex; flex-direction: row;">
+                  <button style="width: 50%!" (click)="cancelChangeUser()">
+                    <span style="font-size: 20px; font-weight: bold;">&#10539;</span>
+                  </button>
+                  <button style="width: 50%!" (click)="changeUser()">
+                    <span style="font-size: 20px; font-weight: bold;">&#10003;</span>
+                  </button>
+                </td>
+              </tr>
+              <ng-template #dataDisplay>
+                <tr>
+                  <td>{{row.id}}</td>
+                  <td>{{row.name}}</td>
+                  <td>{{row.surname}}</td>
+                  <td><img src={{row.picture}} width=50p height=50p/></td>
+                  <td>No</td>
+                  <td>{{row.description}}</td>
+                  <td>{{row.lvl}}</td>
+                  <td style="display: flex; flex-direction: row;">
+                    <button style="width: 50%!" (click)="removeUser(row.id)">
+                      <span style="font-size: 20px; font-weight: bold;">&#8722;</span>
+                    </button>
+                    <button style="width: 50%!" (click)="chooseChangeUser(row.id)">
+                      <span style="font-size: 20px; font-weight: bold;">&#9998;</span>
+                    </button>
+                  </td>
+                </tr>
+              </ng-template>
+            </ng-container>
           </tbody>
         </table>
         <button (click)="toggleModal('regist')">

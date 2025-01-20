@@ -16,10 +16,6 @@ import { MenuModule } from './menu/menu.module';
 import { GallerieComponent } from './gallerie/gallerie.component';
 
 
-<<<<<<< HEAD
-=======
-// Neue Route hinzugefügt
->>>>>>> e7d4a900cd38ddb9572ca252daae0791ae02b7b7
 export const routes: Routes = [
     { path: "home", component: LandingComponent },
     { path: "about", component: AboutComponent },
@@ -43,8 +39,4 @@ export const routes: Routes = [
     ],
     exports: [RouterModule]
 })
-<<<<<<< HEAD
 export class AppRoutingModule { }
-=======
-export class AppRoutingModule {}
->>>>>>> e7d4a900cd38ddb9572ca252daae0791ae02b7b7

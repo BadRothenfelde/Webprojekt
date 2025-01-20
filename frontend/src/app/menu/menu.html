@@ -2,51 +2,63 @@
     <h1>Menu</h1>
     <h2>Main Course</h2>
 
-    <div *ngFor="let item of menuItem"
-        class="menu-item">
-        
-        <button type="button" class="menu-button">
-            <section class="menu-section">
-                <img src="{{item.picture}}" alt="Xia Long Bao" class="menu-image">
-                <h2>{{item.name}}</h2>
-            </section>
-            <section class="menu-price">
-                <h2>{{item.price}}</h2>
-            </section>
-        </button>
-        <button (click)="toggleModal('log')" class="order-button">
-            Order!
-        </button>
-    </div>
+        <div *ngFor="let item of menuItem"
+            style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; border: 1px solid #ccc; padding: 20px; background-color: #f9f9f9; border-radius: 10px; width: 100%; max-width: 600px; margin: 0 auto;">
+            
+            <button type="button"
+                style="display: flex; align-items: center; gap: 10px; padding: 10px; border: none; background: none; cursor: default; text-align: left; width: 100%; height: 100px;">
+                <section style="display: flex; flex-direction: row; align-items: center">
+                    <img src={{item.picture}} alt="Xia Long Bao"
+                        style="width: 100px; height: 100px; border-radius: 50%;">
+                    <h2 style="margin: 0;">{{item.name}}</h2>
+                </section>
+                <section style="right: 0; display: flex">
+                    <h2 style="margin: 0;">{{item.price}}</h2>
+                </section>
+            </button>
+            <button (click)="toggleModal('log'); id = item.id; name=item.name; price=item.price"
+                style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; text-align: center; width: 100%; height: 40px;">
+                Order!
+            </button>
+        </div>
 
-    <div id="log" class="modal" [style.display]="modalVisible == 'log' ? 'block' : 'none'">
-        <form class="modal-content animate" action="/" method="post">
-            <h2>Additional Condiments</h2>
-            <span (click)="toggleModal(null)" class="close" title="close Modal">&times;</span>
+        <div id="log" class="modal" [style.display]="modalVisible == 'log' ? 'block' : 'none'">
+            <div class="modal-content animate" action="/" method="post">
+                <h2>Additional Condiments</h2>
+                <span (click)="toggleModal(null)" class="close" title="close Modal">&times;</span>
 
-            <div>
-                <ol>
-                    <li>
-                        <input type="radio" name="addon" id="ChilliOil" value="ChilliOil">
-                        <label for="ChilliOil">Chilli Oil</label>
-                    </li>
-                    <li>
-                        <input type="radio" name="addon" id="ChilliFlakes" value="ChilliFlakes">
-                        <label for="ChilliFlakes">Chilli Flakes</label>
-                    </li>
-                    <li>
-                        <input type="radio" name="addon" id="LowSodiumSoySauce" value="LowSodiumSoySauce">
-                        <label for="LowSodiumSoySauce">Low Sodium Soy Sauce</label>
-                    </li>
-                </ol>
+                <div>
+                    <ol style="list-style-type: none; padding-left: 0; margin: 0;">
+                        <li style="display: flex; align-items: center; justify-content: flex-start;">
+                            <input [(ngModel)]="chilli_oil" type="checkbox" id="ChilliOil" name="ChilliOil"
+                                style="margin-right: 10px;">
+                            <label for="ChilliOil">Chilli Oil</label>
+                        </li>
+                        <li style="display: flex; align-items: center; justify-content: flex-start;">
+                            <input [(ngModel)]="chilli_flakes" type="checkbox" id="ChilliFlakes" name="ChilliFlakes"
+                                style="margin-right: 10px;">
+                            <label for="ChilliFlakes">Chilli Flakes</label>
+                        </li>
+                        <li style="display: flex; align-items: center; justify-content: flex-start;">
+                            <input [(ngModel)]="soy_sauce" type="checkbox" id="LowSodiumSoySauce" name="LowSodiumSoySauce"
+                                style="margin-right: 10px;">
+                            <label for="LowSodiumSoySauce">Low Sodium Soy Sauce</label>
+                        </li>
+                    </ol>
+                </div>
+
+                <button (click)="addToCart()" type="button"
+                    style="margin:auto; width: 85%; background-color: #ff0000; color: rgb(0, 0, 0); border: none; border-radius: 5px; cursor: pointer; text-align: center; width: 100%; height: 40px;"
+                    class="modalBtn"> Put into Cart </button>
+
+                <div class="row">
+                    <button type="button" style="margin:auto; width: 40%;" (click)="toggleModal(null)"> Cancel </button>
+                    <button type="button" style="margin:auto; width: 40%;" (click)="navigateToAllergy()">I'm allergic!</button>
+                </div>
             </div>
+        </div>
 
-            <button type="button" class="modalBtn"> Put into Cart </button>
 
-            <div class="row">
-                <button type="button" (click)="toggleModal(null)"> Cancel </button>
-                <button type="button" (click)="navigateToAllergy()">I'm allergic!</button>
-            </div>
-        </form>
-    </div>
-</main>
+
+        <p></p>
+    </main>

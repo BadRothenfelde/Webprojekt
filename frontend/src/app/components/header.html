@@ -14,8 +14,46 @@
             <a href="/about" aria-label="About"> Philosophie </a>
 
             
-            <button *ngIf="!logged" class="navBtn" (click)="toggleModal('log')" style="width: auto;"> Login </button>
+            <button class="navBtn" (click)="toggleModal('order')" style="width: auto;"> Bestellung </button>
+
+            <!-- <a href="/member aria-label="Member"> Mitglied </a> -->
+            <button *ngIf="!logged" class="navBtn" (click)="toggleModal('log')" style="width: auto;"> Example Modal </button>
             <a *ngIf="admin" href="/administration" aria-label="Admin"> Admin </a>
+           
+            <!-- Modal Order -->
+            <div id="order" class="modal" [style.display]="modalVisible == 'order' ? 'block' : 'none'">
+
+                <div class="modal-content animate">
+                    <h1 style="color: black"> Einkaufskorb </h1>
+                    <span (click)="toggleModal(null)" class="close" title="close Modal">&times;</span>
+                   <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Preis</th>
+                                <th>Extra</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let row of viewOrder">
+                                <td>{{row.name}}</td>
+                                <td>{{row.price}}</td>
+                                <td> Extras </td>
+                                <td style="display: flex; flex-direction: row;">
+                                    <button (click)="removeItem(row.id)">
+                                        <span style="font-size: 20px; font-weight: bold;">&#8722;</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                   </table>
+                   <button style="font-size: 20px; font-weight: bold; color: black">
+                        Einkaufen
+                    </button>
+                </div>
+            </div>
+            
 
             <!-- Modal log -->
             <div id="log" class="modal" [style.display]="modalVisible == 'log' ? 'block' : 'none'">

@@ -17,6 +17,43 @@
     justify-content: space-between; /* Abstand zwischen Logo, Titel und Navigation */
     margin: 0 auto;
 }
+table{
+    position: null;
+    margin-top: 30px;
+    width: 100%;
+    align-items: center;
+    text-align: left;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: black;
+    border-radius: 8px;
+  
+    button {
+      padding: 10px 15px;
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      color: black;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-size: 1rem;
+      border-radius: 4px;
+      border-bottom: 1px solid transparent;
+      text-align: center
+    }
+    
+    button:hover, button:focus{
+        color: red;
+    }
+}
+th, td {
+    padding: 2px 4px;
+    border-right: 1px solid #dddddd;
+}
+tr{
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #dddddd;
+}
 
 h1 {
     font-size: 2.125rem; /* Kleinere Schrift für den Titel */
@@ -34,6 +71,8 @@ h1 {
 nav {
     display: flex;
     margin-right: 5%;
+    justify-content: center;
+    align-items: center;  
 }
 
 nav a {
@@ -60,10 +99,11 @@ button {
     text-transform: uppercase;
     font-size: 1rem;
     border-radius: 4px;
+    border-bottom: 1px solid transparent;
 }
 
 button:hover {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid black;
 }
 
 .modal-content {
