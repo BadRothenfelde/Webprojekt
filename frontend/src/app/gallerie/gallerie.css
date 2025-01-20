@@ -67,3 +67,14 @@ main {
         grid-template-columns: repeat(1, 1fr);
     }
 }
+
+h1 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    color: white;
+    position: relative; /* Falls es von anderen Elementen überlappt wird */
+    z-index: 10; /* Stellt sicher, dass es über anderen Elementen bleibt */
+}
+
