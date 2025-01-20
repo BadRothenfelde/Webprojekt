@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 class User(models.Model):
     class Access(models.IntegerChoices):
         guest = 0

@@ -9,6 +9,35 @@ from .models import Menue
 def menueList(request):
     menue = {"Haupt" : list(Menue.objects.values("id", "name", "picture", "price", "description", "allergies"))}
     return JsonResponse(menue)
+def adjustMenu(request):
+    #maybe csrf
+    data = request.POST
+
+    menu = Menue.objects.get(id = data.get("id"))
+    
+    if(data.get("name") != "undefined"):
+        menu.name  =  data.get("name")
+    if data.get("price") != "undefined":
+        menu.price = data.get("price")
+    if data.get("description") != "undefined":
+        menu.description =  data.get("description")
+    if data.get("allergies") != "undefined":
+        menu.allergies = data.get("allergies")
+
+    picture = request.FILES.get("image") if request.FILES.get("image") else None
+    if(picture != None):
+        if(picture.name != menu.picture):
+            path = os.path.join("./administration/assets/", picture.name)
+            try:
+                with open(path, "wb") as file:
+                    for chunk in picture.chunks():
+                        file.write(chunk)       
+            except:
+                return JsonResponse({'message': 'error'}, status=404)
+            menu.picture = picture.name
+
+    menu.save()
+    return JsonResponse({'message': 'sucess'})
 def addItem(request):
     #maybe csrf
     data = request.POST

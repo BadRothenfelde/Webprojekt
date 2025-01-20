@@ -9,5 +9,6 @@ urlpatterns = [
     path("users/", views.users, name="Nutzer"),
     path("registry/", views.addUser, name="Regristrierung"),
     path("purge/", views.removeUser, name="Löschung von Nutzern"),
+    path("adjust/", views.adjustUser, name="Anpassung von Nutzerdaten"),
     path("<pic_name>/", views.profilePic, name="Profil"),
 ]

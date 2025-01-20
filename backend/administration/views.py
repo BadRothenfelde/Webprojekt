@@ -17,7 +17,7 @@ def verify(request):
         
         # if(check_password(verify.get("password"), user.password)):
         if(verify.get("password") == User.objects.values("password").get(name=verify.get("name")).get("password")):
-            return JsonResponse(user)
+            return JsonResponse(user, status=200)
         else:
             return JsonResponse({'error': "Invalid Password"}, status=401)
     except User.DoesNotExist:
@@ -53,10 +53,43 @@ def addUser(request):
             for chunk in picture.chunks():
                 file.write(chunk)       
     except:
-        return JsonResponse({'message': 'error'})
+        return JsonResponse({'message': 'error'}, status=404)
     
     User(name=name, surname=surname, password=password, description=description, picture="http://127.0.0.1:8000/administration/"+picture.name+"/", lvl=lvl).save()
     return JsonResponse({'message': 'sucess'})
+
+def adjustUser(request):
+    #maybe csrf
+    data = request.POST
+
+    user = User.objects.get(id = data.get("id"))
+    
+    if(data.get("vorname") != "undefined"):
+        user.name  =  data.get("vorname")
+    if data.get("nachname") != "undefined":
+        user.surname = data.get("nachname")
+    if data.get("password") != "undefined":
+        user.password =  data.get("password")
+    if data.get("beschreibung") != "undefined":
+        user.description = data.get("beschreibung")
+    if data.get("lvl") != "undefined":
+        user.lvl = data.get("lvl")
+
+    picture = request.FILES.get("profilePicture") if request.FILES.get("profilePicture") else None
+    if(picture != None):
+        if(picture.name != user.picture):
+            path = os.path.join("./administration/assets/", picture.name)
+            try:
+                with open(path, "wb") as file:
+                    for chunk in picture.chunks():
+                        file.write(chunk)       
+            except:
+                return JsonResponse({'message': 'error'}, status=404)
+            user.picture = picture.name
+
+    user.save()
+    return JsonResponse({'message': 'sucess'})
+
 def removeUser(request):
     id = request.body.decode("utf-8")
     try:
