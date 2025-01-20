@@ -17,38 +17,38 @@
                     <h2 style="margin: 0;">{{item.price}}</h2>
                 </section>
             </button>
-            <button (click)="toggleModal('log')"
+            <button (click)="toggleModal('log'); id = item.id; name=item.name; price=item.price"
                 style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; text-align: center; width: 100%; height: 40px;">
                 Order!
             </button>
         </div>
 
         <div id="log" class="modal" [style.display]="modalVisible == 'log' ? 'block' : 'none'">
-            <form class="modal-content animate" action="/" method="post">
+            <div class="modal-content animate" action="/" method="post">
                 <h2>Additional Condiments</h2>
                 <span (click)="toggleModal(null)" class="close" title="close Modal">&times;</span>
 
                 <div>
                     <ol style="list-style-type: none; padding-left: 0; margin: 0;">
                         <li style="display: flex; align-items: center; justify-content: flex-start;">
-                            <input type="radio" name="addon" id="ChilliOil" value="ChilliOil"
+                            <input [(ngModel)]="chilli_oil" type="checkbox" id="ChilliOil" name="ChilliOil"
                                 style="margin-right: 10px;">
                             <label for="ChilliOil">Chilli Oil</label>
                         </li>
                         <li style="display: flex; align-items: center; justify-content: flex-start;">
-                            <input type="radio" name="addon" id="ChilliFlakes" value="ChilliFlakes"
+                            <input [(ngModel)]="chilli_flakes" type="checkbox" id="ChilliFlakes" name="ChilliFlakes"
                                 style="margin-right: 10px;">
                             <label for="ChilliFlakes">Chilli Flakes</label>
                         </li>
                         <li style="display: flex; align-items: center; justify-content: flex-start;">
-                            <input type="radio" name="addon" id="LowSodiumSoySauce" value="LowSodiumSoySauce"
+                            <input [(ngModel)]="soy_sauce" type="checkbox" id="LowSodiumSoySauce" name="LowSodiumSoySauce"
                                 style="margin-right: 10px;">
                             <label for="LowSodiumSoySauce">Low Sodium Soy Sauce</label>
                         </li>
                     </ol>
                 </div>
 
-                <button type="button"
+                <button (click)="addToCart()" type="button"
                     style="margin:auto; width: 85%; background-color: #ff0000; color: rgb(0, 0, 0); border: none; border-radius: 5px; cursor: pointer; text-align: center; width: 100%; height: 40px;"
                     class="modalBtn"> Put into Cart </button>
 
@@ -56,7 +56,7 @@
                     <button type="button" style="margin:auto; width: 40%;" (click)="toggleModal(null)"> Cancel </button>
                     <button type="button" style="margin:auto; width: 40%;" (click)="navigateToAllergy()">I'm allergic!</button>
                 </div>
-            </form>
+            </div>
         </div>
 
 

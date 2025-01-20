@@ -75,11 +75,50 @@ export class AdministrationComponent {
     }
 
     menue = {
+      id: null,
       name:"",
       price:"",
       description:"",
       allergies:"",
       image: null as File | null,
+    }
+    async changeMenu(){
+      const formData = new FormData();
+      formData.append('id', this.menue.id + "");
+      formData.append('name', this.menue.name);
+      formData.append('price', this.menue.price);
+      formData.append('description', this.menue.description);
+      formData.append('allergies', this.menue.allergies);
+
+      if (this.menue.image) {
+        formData.append('image', this.menue.image);
+      }
+
+      let response = await fetch("http://127.0.0.1:8000/menue/adjustMenu/", {
+        method: 'POST',
+        body: formData
+      })
+      this.getMenue()
+      this.cancelChangeMenu()
+    }
+    chooseChangeMenu(id: number){
+      for (let menu of this.menuData){
+        if (menu.id === id) {
+          this.menue = menu;
+          break;
+        }
+      }
+      console.info(this.menue)
+    }
+    cancelChangeMenu(){
+      this.menue = {
+        id: null,
+        name:"",
+        price:"",
+        description:"",
+        allergies:"",
+        image: null as File | null,
+      }
     }
     async addMenu(event: Event){
       event.preventDefault()
@@ -93,7 +132,6 @@ export class AdministrationComponent {
       if (this.menue.image) {
         formData.append('image', this.menue.image);
       }
-      console.info(formData)
 
       let response = await fetch("http://127.0.0.1:8000/menue/newItem/", {
         method: 'POST',
@@ -105,13 +143,53 @@ export class AdministrationComponent {
     selectedImage(event: any) {
       this.menue.image = event.target.files[0];
     }
+
     user = {
+      id:null,
       vorname:"",
       nachname:"",
       password:"",
       beschreibung:"",
       lvl:"",
       profilePicture: null as File | null,
+    }
+    async changeUser(){
+      const formData = new FormData();
+      formData.append('id', this.user.id + "");
+      formData.append('vorname', this.user.vorname);
+      formData.append('nachname', this.user.nachname);
+      formData.append('password', this.user.password);
+      formData.append('beschreibung', this.user.beschreibung);
+      formData.append('lvl', this.user.lvl);
+
+      if (this.user.profilePicture) {
+        formData.append('profilePicture', this.user.profilePicture);
+      }
+
+      let response = await fetch("http://127.0.0.1:8000/administration/adjust/", {
+        method: 'POST',
+        body: formData
+      })
+      this.getUsers()
+      this.cancelChangeUser()
+    }
+    chooseChangeUser(id: number){
+      for (let user of this.usersData){
+        if (user.id === id) {
+          this.user = user;
+          break;
+        }
+      }
+    }
+    cancelChangeUser(){
+      this.user = {id:null,
+        vorname:"",
+        nachname:"",
+        password:"",
+        beschreibung:"",
+        lvl:"",
+        profilePicture: null as File | null,
+      }
     }
     async addUser(event: Event){
       event.preventDefault()
