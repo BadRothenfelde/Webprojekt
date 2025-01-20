@@ -5,7 +5,7 @@ from .models import Tisch, Buchung
 class TischSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tisch
-        fields = ['tisch_id', 'position_x', 'position_y', 'kapazität']
+        fields = ['tisch_id', 'position_x', 'position_y', 'kapazitat']
 
 # Serializer für Sitzplan mit Verfügbarkeitsstatus
 class SitzplanSerializer(serializers.Serializer):

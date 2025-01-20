@@ -43,7 +43,6 @@ INSTALLED_APPS = [
 
     'rest_framework.authtoken',
 
-    'test.apps.TestConfig',
     'menue.apps.MenueConfig',
     'seating.apps.SeatingConfig',
     'administration.apps.AdministrationConfig'

@@ -13,8 +13,8 @@ import { SitzplanModul } from './reservation/sitzplan.component';
 import { AdministrationComponent } from './administration/administration.component';
 import { AdministrationModule } from './administration/administration.module';
 import { MenuModule } from './menu/menu.module';
-import { ReservationComponent } from './reservation/reservation.component';
 import { GallerieComponent } from './gallerie/gallerie.component';
+
 
 // Neue Route hinzugefügt
 export const routes: Routes = [
@@ -26,6 +26,7 @@ export const routes: Routes = [
     { path: "allergy", component: AllergyComponent },
     { path: "", redirectTo: "/home", pathMatch: "full" },
     {path: "gallerie", component: GallerieComponent},
+    {path: "administration", component: AdministrationComponent },
 ];
 
 @NgModule({
@@ -34,7 +35,8 @@ export const routes: Routes = [
         CommonModule,   
         HttpClientModule,             
         FormsModule,  
-        SitzplanModul              
+        SitzplanModul,
+        AdministrationModule, MenuModule         
     ],
     exports: [RouterModule]
 })

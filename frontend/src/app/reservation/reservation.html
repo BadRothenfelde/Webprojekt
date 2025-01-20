@@ -1,6 +1,7 @@
 <div class="container">
   <div class="header">
     <h1>Restaurant Sitzplan</h1>
+    <p>Jede Buchung geht 90 Minuten <br> Letzte Buchung des Tages: 21:30Uhr</p>
     <div class="filters">
       <label for="datum">Datum:</label>
       <input type="date" id="datum" [(ngModel)]="selectedDatum">
@@ -12,14 +13,31 @@
     </div>
   </div>
 
+  <!-- Das Pop-up -->
+<div *ngIf="isPopupOpen" class="popup">
+  <div class="popup-content">
+    <h2>Tisch: {{ selectedTisch.tisch.tisch_id }}</h2>
+    <p>Kapazität: {{ selectedTisch.tisch.kapazitat }}, Status: {{ selectedTisch.status }}</p>
+    <button (click)="closePopup()">Schließen</button>
+    <button (click)="bucheTisch(selectedTisch); closePopup(); openPopup2(popup2Message)">Buchen</button>
+  </div>
+</div>
+
+<div *ngIf="isPopupOpen2" class="popup">
+  <div class="popup-content">
+    <div [innerHTML]="popup2"></div>  <!-- Setzt den Popup-Text, jedoch nicht den Button -->
+    <button (click)="closePopup2()">Schließen</button>
+  </div>
+</div>
+
   <div class="sitzplan">
-    <div 
-      *ngFor="let tisch of sitzplan" 
-      class="tisch" 
-      [ngClass]="{'frei': tisch.status === 'frei', 'besetzt': tisch.status === 'besetzt'}" 
+    <div
+      *ngFor="let tisch of sitzplan"
+      class="tisch"
+      [ngClass]="{'frei': tisch.status === 'frei', 'besetzt': tisch.status === 'besetzt'}"
       [style.left.px]="tisch.tisch.position_x"
       [style.top.px]="tisch.tisch.position_y"
-      (click)="bucheTisch(tisch)" 
+      (click)="openPopup(tisch)"
     >
       {{ tisch.tisch.tisch_id }}
     </div>

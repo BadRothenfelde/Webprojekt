@@ -4,12 +4,17 @@ from rest_framework.decorators import api_view
 from .models import Tisch, Buchung
 from .serializers import TischSerializer, SitzplanSerializer, BuchungSerializer
 from datetime import timedelta, time
+from django.http import JsonResponse
+from .forms import BuchungForm
+from seating.forms import BuchungForm
+import json
+import random
+from datetime import datetime, timedelta
 
-# API-View: Sitzplan mit Verfügbarkeitsstatus
-@api_view(['GET'])
+
 def lade_sitzplan(request):
-    datum = request.query_params.get('datum')
-    zeitfenster = request.query_params.get('zeitfenster')  # Zeit als String "HH:MM"
+    datum = request.GET.get('datum')
+    zeitfenster = request.GET.get('zeitfenster')  # Zeit als String "HH:MM"
     if not datum or not zeitfenster:
         return Response({"error": "Datum und Zeitfenster sind erforderlich."}, status=400)
 
@@ -17,28 +22,68 @@ def lade_sitzplan(request):
     tische = Tisch.objects.all()
     buchungen = Buchung.objects.filter(datum=datum)
 
-    # Bereite Sitzplan mit Status auf
+
+
     sitzplan = []
     for tisch in tische:
-        besetzt = buchungen.filter(tisch=tisch, zeitfenster=zeitfenster).exists()
-        sitzplan.append({"tisch": TischSerializer(tisch).data, "status": "besetzt" if besetzt else "frei"})
+        # Berechne die Endzeit der Buchung anhand der Dauer
+        for buchung in buchungen.filter(tisch=tisch):
+            buchungs_endzeit = datetime.combine(datetime.strptime(datum, '%Y-%m-%d').date(), buchung.zeitfenster) + timedelta(minutes=buchung.dauer)
+            buchungs_startzeit = datetime.combine(datetime.strptime(datum, '%Y-%m-%d').date(), buchung.zeitfenster)
+            jetzige_zeit = datetime.combine(datetime.strptime(datum, '%Y-%m-%d').date(), zeitfenster)
+            
+            # Wenn der Tisch für die angefragte Zeit und die Dauer schon gebucht ist
+            if buchungs_startzeit <= jetzige_zeit < buchungs_endzeit:
+                sitzplan.append({"tisch": TischSerializer(tisch).data, "status": "besetzt"})
+                break
+        else:
+            sitzplan.append({"tisch": TischSerializer(tisch).data, "status": "frei"})
     
-    return Response(sitzplan, status=200)
+    return JsonResponse({"Sitzplan": list(sitzplan)}, status=200)
 
-# API-View: Buchung eines Tisches
-@api_view(['POST'])
+def generate_unique_code():
+    # Generiere einen zufälligen 6-stelligen Code
+    while True:
+        code = str(random.randint(100000, 999999))
+        # Überprüfe, ob der Code bereits existiert
+        if not Buchung.objects.filter(buchungscode=code).exists():
+            return code
+
 def buche_tisch(request):
-    serializer = BuchungSerializer(data=request.data)
-    if serializer.is_valid():
-        tisch_id = serializer.validated_data['tisch'].id
-        datum = serializer.validated_data['datum']
-        zeitfenster = serializer.validated_data['zeitfenster']
+    if request.method == 'POST':
+        try:
+            body = json.loads(request.body)  # Parse die JSON-Daten
+            print(body)  # Debugging
 
-        # Verfügbarkeit prüfen
-        if Buchung.objects.filter(tisch_id=tisch_id, datum=datum, zeitfenster=zeitfenster).exists():
-            return Response({"error": "Dieser Tisch ist bereits belegt."}, status=400)
+            zeitfenster = body.get('zeitfenster')
+            zeitfenster_obj = time.fromisoformat(zeitfenster)
+            if not (time(10, 0) <= zeitfenster_obj <= time(21, 30)):
+                return JsonResponse({"error": "Das Zeitfenster muss zwischen 10:00 und 21:30 liegen."}, status=400)
 
-        # Buchung speichern
-        serializer.save()
-        return Response({"message": "Buchung erfolgreich!"}, status=201)
-    return Response(serializer.errors, status=400)
+            # Siehe hier, wie du das FormData übergibst
+            # Da du `tisch_id` verwendest, solltest du den Wert in die ForeignKey-Relation auflösen:
+            tisch = get_object_or_404(Tisch, tisch_id=body['tisch'])  # Suche den Tisch anhand seiner ID
+            datum = body['datum']
+            zeitfenster = body['zeitfenster']
+            dauer = body['dauer']
+
+            # Prüfe Verfügbarkeit
+            if Buchung.objects.filter(tisch=tisch, datum=datum, zeitfenster=zeitfenster).exists():
+                return JsonResponse({"error": "Dieser Tisch ist bereits belegt."}, status=400)
+
+            # Generiere einen einzigartigen 6-stelligen Buchungscode
+            buchungscode = generate_unique_code()
+
+            # Buchung erstellen und speichern
+            buchung = Buchung.objects.create(tisch=tisch, datum=datum, zeitfenster=zeitfenster, dauer=dauer,buchungscode=buchungscode)
+            buchung.save()
+
+            print(f"Generierter Buchungscode: {buchungscode}") 
+            return JsonResponse({"message": "Buchung erfolgreich!", "buchungscode": buchungscode}, status=201)
+
+
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Fehler beim Parsen der JSON-Daten."}, status=400)
+        
+    return JsonResponse({"error": "Ungültige Anfrage"}, status=400)
+
