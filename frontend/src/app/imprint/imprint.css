@@ -1,4 +1,3 @@
-/* Allgemeine Seite */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,7 +5,6 @@ body {
     background-color: #f9f9f9; /* Weißer Hintergrund */
 }
 
-/* Abschnitt für den Hauptinhalt */
 main {
     margin-top: 20px;
     padding: 0 20px;
@@ -16,7 +14,6 @@ main {
     align-items: flex-start; /* Der Inhalt wird nach links ausgerichtet */
 }
 
-/* Stil für den Titel (mittig ausgerichtet) */
 h1 {
     font-size: 3.125rem; /* Große Schrift für den Haupttitel */
     text-align: center; /* Text mittig ausrichten */
@@ -27,7 +24,6 @@ h1 {
 }
 
 
-/* Untertitel */
 p {
     font-size: 1.2rem; /* Mittlere Schriftgröße */
     text-align: left; /* Text links ausrichten */
@@ -36,13 +32,11 @@ p {
     line-height: 1.8; /* Zeilenhöhe für bessere Lesbarkeit */
 }
 
-/* Stil für den Abschnitt */
 .content {
     width: 80%;
     margin: auto;
 }
 
-/* Stil für den Textbereich */
 section.intro {
     padding: 50px 20px;
     text-align: left; /* Text links ausrichten */

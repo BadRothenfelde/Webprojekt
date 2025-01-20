@@ -1,4 +1,3 @@
-/* Hero-Bereich */
 .hero {
     position: relative;
     display: flex;
@@ -9,16 +8,14 @@
     overflow: hidden;
 }
 
-/* Das Hero-Bild in Originalgröße */
 .hero img {
-    max-width: none; /* Stellt sicher, dass das Bild nicht skaliert wird */
-    max-height: none; /* Erlaubt die Originalhöhe */
-    width: auto; /* Beibehaltung der natürlichen Breite */
-    height: auto; /* Beibehaltung der natürlichen Höhe */
+    max-width: none; 
+    max-height: none; 
+    width: auto; 
+    height: auto; 
     display: block;
 }
 
-/* Der Text über dem Hero-Bild */
 .hero-text {
     position: absolute;
     top: 50%;
@@ -32,22 +29,19 @@
     width: 70%;
 }
 
-/* Überschrift "Willkommen bei Rizztaurant" in Weiß */
 .hero-text h1 {
     font-size: 2.5rem;
     margin: 0;
     color: white !important;
 }
 
-/* Untertitel in Weiß */
 .hero-text p {
     font-size: 1.2rem;
     margin-top: 10px;
     color: white !important;
 }
 
-/* Bero-Bereich */
-.bero {
+.pic {
     position: relative;
     display: flex;
     justify-content: center;
@@ -57,15 +51,13 @@
     overflow: hidden;
 }
 
-/* Hauptbild im Bero-Bereich */
-.bero-bg {
+.pic-bg {
     width: 100%;
     height: auto;
     display: block;
 }
 
-/* Overlay-Bild: Klein und rechts über dem Hauptbild */
-.bero-overlay {
+.pic-overlay {
     position: absolute;
     top: 20%;
     right: 10%;
@@ -74,8 +66,7 @@
     opacity: 1;
 }
 
-/* Der Text über dem Bero-Bild */
-.bero-text {
+.pic-text {
     position: absolute;
     bottom: 50%;
     left: 30%;
@@ -87,18 +78,15 @@
     width: 30%;
 }
 
-/* Spezifische Anpassung für den Titel */
-.bero-text h1 {
+.pic-text h1 {
     font-size: 2rem;
     margin-bottom: 10px;
 }
 
-/* Spezifische Anpassung für den Absatz */
-.bero-text p {
+.pic-text p {
     font-size: 1.2rem;
 }
 
-/* Button-Styling */
 .custom-button {
     display: inline-block;
     padding: 14px 20px;
@@ -113,25 +101,22 @@
     transition: background-color 0.3s ease-in-out, opacity 0.3s;
 }
 
-/* Hover-Effekt */
 .custom-button:hover {
     background-color: rgba(0, 0, 0, 0.4);
     color: white;
 }
 
-/* Inhaltsbereich */
 .content {
     text-align: center;
-    padding: 0;  /* Entfernt jegliche Polsterung */
-    margin: 0;   /* Entfernt den Standardabstand */
-    width: 100vw;  /* Volle Breite des Viewports */
-    height: 100vh; /* Volle Höhe des Viewports */
+    padding: 0;  
+    margin: 0; 
+    width: 100vw;  
+    height: 100vh; 
 }
 
-/* Bild im Inhaltsbereich - auf volle Breite und Höhe ausfüllen */
 .content img {
-    width: 100vw;  /* Bild füllt die volle Breite des Viewports */
-    height: 100vh; /* Bild füllt die volle Höhe des Viewports */
-    object-fit: cover; /* Bild wird zugeschnitten, um den gesamten Bereich zu füllen */
-    display: block;  /* Verhindert, dass das Bild als Inline-Element angezeigt wird */
+    width: 100vw;  
+    height: 100vh;
+    object-fit: cover;
+    display: block;  
 }

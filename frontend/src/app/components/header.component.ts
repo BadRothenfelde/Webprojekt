@@ -21,9 +21,6 @@ export class HeaderComponent {
       this.isPlatFormBrowser = isPlatformBrowser(platformId);
     }
     ngOnInit() {
-      //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-      //Add 'implements OnInit' to the class.
-      // why this platform browser or due to change cookies error despite having read cookie
       if(!this.isPlatFormBrowser) return;
 
       let cook = this.getCookie("user")

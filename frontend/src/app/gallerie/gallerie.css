@@ -1,4 +1,3 @@
-/* Basis-Styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,7 +5,6 @@ body {
     background-color: rgb(30, 20, 10); /* Dunkleres Braun */
 }
 
-/* Der Header bleibt exakt wie zuvor */
 .sticky-header {
     position: sticky;
     top: 0;
@@ -18,7 +16,6 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Abstand für den Hauptinhalt (wegen sticky Header) */
 main {
     margin-top: 80px; /* Korrektur für mehr Platz oben */
     margin-bottom: 60px; /* Zusätzlicher Platz unten */
@@ -29,7 +26,6 @@ main {
     padding: 20px; /* Fügt etwas Innenabstand hinzu */
 }
 
-/* Grid-Galerie mit genau 3 Bildern pro Reihe, perfekt mittig */
 .gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Immer 3 Bilder pro Reihe */
@@ -39,7 +35,6 @@ main {
     margin: auto;
 }
 
-/* Einzelnes Galerie-Bild */
 .gallery-item {
     width: 406px;
     height: 550px;
@@ -57,12 +52,10 @@ main {
     border-radius: 10px;
 }
 
-/* Hover-Effekt für Bilder */
 .gallery-item:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
-/* Responsive Design: Wenn der Bildschirm kleiner ist, nur 2 oder 1 Bild pro Reihe */
 @media (max-width: 1200px) {
     .gallery {
         grid-template-columns: repeat(2, 1fr);

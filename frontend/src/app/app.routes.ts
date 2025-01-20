@@ -12,7 +12,6 @@ import { ReservationComponent } from './reservation/reservation.component';
 import { GallerieComponent } from './gallerie/gallerie.component';
 
 
-
 export const routes: Routes = [
     {path: "home", component: LandingComponent },
     {path: "about", component: AboutComponent },
