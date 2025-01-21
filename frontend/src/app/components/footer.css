@@ -1,9 +1,10 @@
 .footer {
-    background-color: rgb(53, 38, 26); /* Braune Hintergrundfarbe */
+    background-color: rgb(30, 20, 10) !important; /* Dunkleres Braun */
     color: white;
     padding: 40px 0;
     text-align: center;
     width: 100%;
+
 }
 
 .footer-container {

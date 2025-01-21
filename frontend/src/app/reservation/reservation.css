@@ -1,48 +1,158 @@
+
+.reservation-page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 🔥 Hintergrundbild */
+.reservation-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.reservation-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(2px);
+}
+
+/* 🔥 Container mit Abstand nach unten */
 .container {
   width: 100%;
   margin: 0 auto;
   text-align: center;
-}
-
-.header {
-  padding: 20px;
-}
-
-.filters {
-  margin-bottom: 20px;
-}
-
-.filters label {
-  margin-right: 10px;
-}
-
-.filters input {
-  margin-right: 20px;
-}
-
-.sitzplan {
   position: relative;
-  width: 350px;
-  height: 350px;
+  z-index: 1;
+  margin-top: 200px;
+}
+
+/* 🔥 Kasten um "Restaurant Sitzplan" mit dunklem Hintergrund */
+.header-box {
+  width: 50%;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid white;
+  background: rgba(0, 0, 0, 0.6); /* 🔥 Dunkler Hintergrund */
+  color: white;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* 🔥 Kasten für Buchungsinfo */
+.booking-info {
+  width: 50%;
+  margin: 10px auto;
+  padding: 10px;
+  border: 1px solid white;
+  background: rgba(0, 0, 0, 0.6); /* 🔥 Dunkler Hintergrund */
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* 🔥 Neuer Kasten um Datum, Zeitfenster & Button */
+.filters-box {
+  width: 50%;
+  margin: 20px auto;
+  padding: 15px;
+  border: 1px solid white;
+  background: rgba(0, 0, 0, 0.6); /* 🔥 Dunkler Hintergrund */
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* 🔥 Flexbox für Datum, Zeitfenster & Button */
+.filters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+/* 🔥 Stil für das Label */
+.filters label {
+  color: white;
+  font-weight: bold;
+}
+
+/* 🔥 Stil für Input-Felder */
+.filters input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid white;
+  background: rgba(255, 255, 255, 0.1); /* 🔥 Dunkler Input-Hintergrund */
+  color: white;
+  text-align: center;
+}
+
+/* 🔥 Stil für den Button */
+.filters button {
+  padding: 8px 12px;
+  border: 1px solid white;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.6); /* 🔥 Dunkler Hintergrund */
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.filters button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* 🔥 Neuer Sitzplan-Styling */
+.sitzplan {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 20%;
+  max-width: 940px;
+  height: auto;
   margin: 0 auto;
-  background-color: #f4f4f4;
-  border: 1px solid #ddd;
+  background: rgba(0, 0, 0, 0.6); /* 🔥 Dunkler Hintergrund */
+  border: 1px solid white;
   border-radius: 5px;
   overflow: hidden;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+/* 🔥 Größe & Styling der Tische */
 .tisch {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  border-radius: 50%;
+  width: 70px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
+  margin: 10px;
+  border: 1px solid white;
+  color: white;
 }
 
+/* 🔥 Frei oder besetzt Status */
 .tisch.frei {
   background-color: #4caf50;
   color: white;
@@ -57,41 +167,61 @@
 .tisch:hover {
   transform: scale(1.1);
 }
-.clickable-div {
-  cursor: pointer;
-  padding: 20px;
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
-}
 
+/* 🔥 Pop-up Styling */
 .popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Halbtransparent */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
 }
 
+/* 🔥 Pop-up Box */
 .popup-content {
-  background: white;
+  background: rgba(51, 34, 17); /* 🔥 Dunkler Hintergrund */
   padding: 30px;
+  
   border-radius: 5px;
   text-align: center;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 6px rgba(241, 11, 11, 0.1);
+  color: white;
 }
 
+
+.popup-content h2 {
+ 
+  color: white;
+}
+/* 🔥 Standard-Button Styling */
 button {
   margin-top: 10px;
-  background-color: #FF5733;
+  background-color: rgba(0, 0, 0, 0.6); /* 🔥 Dunkler Hintergrund */
   color: white;
-  border: none;
+  border: 1px solid white;
   padding: 10px;
   cursor: pointer;
   margin: 10px;
+}
+
+/* 🔥 Spezieller Button für Buchung */
+.tisch.frei button {
+  background-color: #4caf50; /* 🔥 Grün für Buchen */
+  border: 1px solid #4caf50;
+  color: white;
+}
+
+.tisch.besetzt button {
+  background-color: #f44336; /* 🔥 Rot für Besetzt */
+  border: 1px solid #f44336;
+  color: white;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.8);
 }

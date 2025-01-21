@@ -2,7 +2,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: rgb(30, 20, 10); /* Dunkleres Braun */
+    background-color: rgb(23, 23, 23); /* 🔥 90% Schwarz für den gesamten Hintergrund */
+    color: white;
 }
 
 .sticky-header {
@@ -11,19 +12,19 @@ body {
     left: 0;
     width: 100%;
     padding: 10px 20px;
-    background-color: rgb(53, 38, 26);
+    background-color: rgba(40, 40, 40, 1); /* 🔥 Header bleibt so */
     z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 main {
-    margin-top: 80px; /* Korrektur für mehr Platz oben */
-    margin-bottom: 60px; /* Zusätzlicher Platz unten */
+    margin-top: 80px;
+    margin-bottom: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 20px; /* Fügt etwas Innenabstand hinzu */
+    padding: 20px;
 }
 
 .gallery {
@@ -40,7 +41,7 @@ main {
     height: 550px;
     overflow: hidden;
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6); /* 🔥 Stärkerer Schatten */
     transition: transform 0.3s ease-in-out;
 }
 
@@ -54,6 +55,25 @@ main {
 
 .gallery-item:hover {
     transform: scale(1.1);
+}
+
+.gallery-container {
+    background-color: rgb(10, 10, 10); /* 90% Schwarz */
+    padding: 40px 0; /* Etwas Abstand für bessere Darstellung */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.gallery-section {
+    background-color: rgb(10, 10, 10); /* Schwarzer Hintergrund für Titel + Galerie */
+    padding: 40px 0; /* Abstand nach oben und unten */
+    width: 100%;
+    text-align: center;
+}
+
+.gallery-section h1 {
+    margin-bottom: 20px; /* Abstand zwischen Titel und Galerie */
+    color: white; /* Stellt sicher, dass der Titel lesbar bleibt */
 }
 
 @media (max-width: 1200px) {
@@ -74,7 +94,6 @@ h1 {
     width: 100%;
     text-align: center;
     color: white;
-    position: relative; /* Falls es von anderen Elementen überlappt wird */
-    z-index: 10; /* Stellt sicher, dass es über anderen Elementen bleibt */
+    position: relative;
+    z-index: 10;
 }
-

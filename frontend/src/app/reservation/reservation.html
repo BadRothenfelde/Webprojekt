@@ -1,45 +1,60 @@
-<div class="container">
-  <div class="header">
-    <h1>Restaurant Sitzplan</h1>
-    <p>Jede Buchung geht 90 Minuten <br> Letzte Buchung des Tages: 21:30Uhr</p>
-    <div class="filters">
-      <label for="datum">Datum:</label>
-      <input type="date" id="datum" [(ngModel)]="selectedDatum">
+<div class="reservation-page">
+  <div class="reservation-bg">
+    <img src="assets/home2.jpg" alt="Reservierungs-Hintergrundbild" class="blurred-bg">
+  </div>
 
-      <label for="zeitfenster">Zeitfenster:</label>
-      <input type="time" id="zeitfenster" [(ngModel)]="selectedZeitfenster">
-
-      <button (click)="ladeSitzplan()">Sitzplan laden</button>
+  <div class="container">
+    <!-- 🔥 Neuer Kasten um die Überschrift "Restaurant Sitzplan" -->
+    <div class="header-box">
+      <p>Tischreservierung</p>
     </div>
-  </div>
 
-  <!-- Das Pop-up -->
-<div *ngIf="isPopupOpen" class="popup">
-  <div class="popup-content">
-    <h2>Tisch: {{ selectedTisch.tisch.tisch_id }}</h2>
-    <p>Kapazität: {{ selectedTisch.tisch.kapazitat }}, Status: {{ selectedTisch.status }}</p>
-    <button (click)="closePopup()">Schließen</button>
-    <button (click)="bucheTisch(selectedTisch); closePopup(); openPopup2(popup2Message)">Buchen</button>
-  </div>
-</div>
+    <!-- 🔥 Neuer Kasten für Buchungsinfo -->
+    <div class="booking-info">
+      <p>Jede Reservierung geht 90 Minuten <br> Letzte Reservierung des Tages: 21:30 Uhr</p>
+    </div>
 
-<div *ngIf="isPopupOpen2" class="popup">
-  <div class="popup-content">
-    <div [innerHTML]="popup2"></div>  <!-- Setzt den Popup-Text, jedoch nicht den Button -->
-    <button (click)="closePopup2()">Schließen</button>
-  </div>
-</div>
+    <!-- 🔥 Neuer Kasten um Datum, Zeitfenster & Button -->
+    <div class="filters-box">
+      <div class="filters">
+        <label for="datum">Datum:</label>
+        <input type="date" id="datum" [(ngModel)]="selectedDatum">
 
-  <div class="sitzplan">
-    <div
-      *ngFor="let tisch of sitzplan"
-      class="tisch"
-      [ngClass]="{'frei': tisch.status === 'frei', 'besetzt': tisch.status === 'besetzt'}"
-      [style.left.px]="tisch.tisch.position_x"
-      [style.top.px]="tisch.tisch.position_y"
-      (click)="openPopup(tisch)"
-    >
-      {{ tisch.tisch.tisch_id }}
+        <label for="zeitfenster">Uhrzeit:</label>
+        <input type="time" id="zeitfenster" [(ngModel)]="selectedZeitfenster">
+
+        <button (click)="ladeSitzplan()">Sitzplan laden</button>
+      </div>
+    </div>
+
+    <!-- 🔥 Das Pop-up für Tischbuchung -->
+    <div *ngIf="isPopupOpen" class="popup">
+      <div class="popup-content">
+        <h2>Tisch: {{ selectedTisch.tisch.tisch_id }}</h2>
+        <p>Kapazität: {{ selectedTisch.tisch.kapazitat }}, Status: {{ selectedTisch.status }}</p>
+        <button (click)="closePopup()">Schließen</button>
+        <button (click)="bucheTisch(selectedTisch); closePopup(); openPopup2(popup2Message)">Buchen</button>
+      </div>
+    </div>
+
+    <!-- 🔥 Das Bestätigungs-Pop-up -->
+    <div *ngIf="isPopupOpen2" class="popup">
+      <div class="popup-content">
+        <div [innerHTML]="popup2"></div>
+        <button (click)="closePopup2()">Schließen</button>
+      </div>
+    </div>
+
+    <!-- 🔥 Sitzplan mit automatisch ausgerichteten Tischen -->
+    <div *ngIf="isSitzplanVisible" class="sitzplan"> 
+      <div
+        *ngFor="let tisch of sitzplan"
+        class="tisch"
+        [ngClass]="{'frei': tisch.status === 'frei', 'besetzt': tisch.status === 'besetzt'}"
+        (click)="openPopup(tisch)"
+      >
+        {{ tisch.tisch.tisch_id }}
+      </div>
     </div>
   </div>
 </div>

@@ -1,81 +1,39 @@
-/* Allgemeine Seite */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9; /* Weißer Hintergrund */
+/* Hintergrundbild über die ganze Seite */
+.background-container {
+    position: absolute;
+    width: 100%;
+    height: 100vh; /* 🔥 Jetzt nimmt das Bild die volle Höhe der Seite ein */
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
 
-/* Schmaler Header-Bereich mit Bild */
-.about-img {
-    width: 100%;  /* Bild nimmt die gesamte Breite der Seite ein */
-    height: 400px; /* Bildhöhe festlegen, kann angepasst werden */
-    overflow: hidden; /* Verhindert, dass das Bild aus dem Container herausragt */
-}
-
-.about-img img {
+.background-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Das Bild wird so skaliert, dass es den Bereich ausfüllt */
-    object-position: center; /* Das Bild wird in der Mitte des Containers ausgerichtet */
+    object-fit: cover;
+    filter: blur(2px); /* 🔥 Leichter Blur für besseren Kontrast */
 }
 
-/* Abschnitt für den Hauptinhalt */
-main {
-    margin-top: 20px;
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Stil für den Titel */
-h1 {
-    font-size: 3rem; /* Große Schrift für den Haupttitel */
-    text-align: center;
-    color: rgb(53, 38, 26); /* Dunkles Braun */
-    margin-bottom: 20px;
-}
-
-/* Untertitel */
-p {
-    font-size: 1.5rem; /* Mittlere Schriftgröße */
-    text-align: center;
-    color: rgb(53, 38, 26); /* Dunkles Braun */
-    margin-bottom: 40px;
-}
-
-/* Stil für den Abschnitt */
+/* Weißer Rahmen für den Inhalt, aber ohne Hintergrundfüllung */
 .content {
-    width: 80%;
-    margin: auto;
-}
-
-/* Stil für den Textbereich */
-section.intro {
-    padding: 50px 20px;
+    width: 60%;
+    margin: 10vh auto;
+    padding: 40px;
+    border: 1px solid white; /* 🔥 Nur weißer Rand */
+    border-radius: 10px;
     text-align: center;
-    background-color: rgb(255, 255, 255); /* Weißer Hintergrund für den Text */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
-    border-radius: 10px; /* Abgerundete Ecken */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Vertikale Zentrierung */
-    align-items: center; /* Horizontale Zentrierung */
 }
 
-/* Stil für den Titel im Textbereich */
-section.intro h2 {
-    font-size: 2rem; /* Größe der Überschrift im Textbereich */
-    color: rgb(53, 38, 26); /* Dunkles Braun */
-    margin-bottom: 20px;
+/* Überschrift in weiß */
+h2 {
+    font-size: 2rem;
+    color: white; /* 🔥 Jetzt ist "Unsere Philosophie" weiß */
 }
 
-/* Text im Intro-Bereich */
-section.intro p {
-    font-size: 1.2rem; /* Kleinere Schrift für den Text */
-    line-height: 1.6; /* Zeilenhöhe für bessere Lesbarkeit */
-    color: rgb(53, 38, 26); /* Dunkles Braun */
-    margin-bottom: 20px; /* Abstand zwischen Absätzen */
+/* Text ebenfalls in Weiß */
+p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: white; /* 🔥 Jetzt ist auch der Text weiß */
 }
