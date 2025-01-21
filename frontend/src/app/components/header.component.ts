@@ -23,12 +23,12 @@ export class HeaderComponent {
       this.isPlatFormBrowser = isPlatformBrowser(platformId);
     }
     removeItem(id: number){
-      for(let i = 0; i < this.viewOrder.length; i++){
-        if(this.viewOrder[i].id == id){
-          
-        }
-      }
-      this.viewOrder.splice(id - 1);
+      this.viewOrder.splice(id, 1);
+      
+      let d:Date = new Date();
+      d.setTime(d.getTime() + 120 * 60 * 1000);
+      let expires:string = `expires=${d.toUTCString()}`;
+      document.cookie = "order="+JSON.stringify(this.viewOrder)+`;${expires};path=/`
     }
     ngOnInit() {
       // why this platform browser or due to change cookies error despite having read cookie
@@ -85,11 +85,11 @@ export class HeaderComponent {
       if(cook != null){
         this.order = JSON.parse(cook)
         const orderCount = Object.keys(this.order).length
-        
+        console.info(this.order)
         if(orderCount == this.viewOrder.length)
           return;
         this.viewOrder = []
-        for (let i = this.viewOrder.length; i < orderCount; i++){
+        for (let i in this.order){
           this.viewOrder.push({
             id: this.order[i].id,
             name: this.order[i].name,
@@ -99,8 +99,6 @@ export class HeaderComponent {
             soySauce: this.order[i].soySauce
           })
         }
-        
-        console.info(this.viewOrder)
       }
     }
 

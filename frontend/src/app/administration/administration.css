@@ -3,7 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+main{
+  min-height: 60%;
+}
 .form-group {
   margin-bottom: 15px;
 }

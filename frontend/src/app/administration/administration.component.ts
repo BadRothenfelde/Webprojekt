@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './administration.css',
 })
 export class AdministrationComponent {
-    tabGroup: "overview" | "menu" | "user" = "overview";
+    tabGroup: "overview" | "menu" | "user" | "seating" = "overview";
     tabModal: "regist" | "addItem" | null = null;
     toggleModal(view: "regist" | "addItem" | null){
       this.tabModal = view;
@@ -15,7 +15,7 @@ export class AdministrationComponent {
       if(cook == null)
        window.location.href="/"
     }
-    toggleView(view: "overview" | "menu" | "user"){
+    toggleView(view: "overview" | "menu" | "user" | "seating"){
       this.tabGroup = view;
 
       let cook = this.getCookie("user")
@@ -25,6 +25,7 @@ export class AdministrationComponent {
 
     usersData: any = [];
     menuData: any = [];
+    seatingData: any = [];
     async getMenue(): Promise<any>{
       try{
         let response = await fetch("http://127.0.0.1:8000/menue/", {
@@ -234,6 +235,70 @@ export class AdministrationComponent {
           }
       }
       return cookieValue;
+  }
+ 
+  reservation = {
+    id:null,
+    tisch:"",
+    datum:"",
+    zeitfenster:"",
+    dauer:"",
+    buchungscode:"",
+  }
+  async getSeating(): Promise<any>{
+    try{
+      let response = await fetch("http://127.0.0.1:8000/seating/reserverations/")
+      
+      if(response.ok)
+        this.seatingData = (await response.json()).reservation
+      
+      else 
+        console.error(`Request failed with status ${response.status}`);
+    }catch (error) {
+      console.error("Network error or other issue", error);
+    }
+  }
+  async changeReservation(){
+    const formData = new FormData();
+    formData.append('id', this.reservation.id + "");
+    formData.append('tisch', this.reservation.tisch);
+    formData.append('datum', this.reservation.datum);
+    formData.append('zeitfenster', this.reservation.zeitfenster);
+    formData.append('dauer', this.reservation.dauer);
+    formData.append('buchungscode', this.reservation.buchungscode);
+
+    let response = await fetch("http://127.0.0.1:8000/seating/adjust/", {
+      method: 'POST',
+      body: formData
+    })
+    this.getSeating()
+    this.cancelChangeReservation()
+  }
+  chooseChangeReservation(id: number){
+    for (let seating of this.seatingData){
+      if (seating.id === id) {
+        this.reservation = seating;
+        break;
+      }
+    }
+  }
+  cancelChangeReservation(){
+    this.reservation = {
+      id:null,
+      tisch:"",
+      datum:"",
+      zeitfenster:"",
+      dauer:"",
+      buchungscode:"",
+    }
+  }
+  async removeReservation(id: number){
+    let response = await fetch("http://127.0.0.1:8000/seating/purge/", {
+      headers: {'Content-Type': 'application/json'},
+      method: 'POST',
+      body: id + ""
+    })
+    this.getSeating()
   }
   logout(){
      document.cookie = "user='';expires=-1;path=/"

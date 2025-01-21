@@ -87,3 +87,30 @@ def buche_tisch(request):
         
     return JsonResponse({"error": "Ungültige Anfrage"}, status=400)
 
+def reservations(request):
+    return JsonResponse({"reservation": list(Buchung.objects.values("id", "tisch", "datum", "zeitfenster", "dauer", "buchungscode"))})
+def adjustUser(request):
+    #maybe csrf
+    data = request.POST
+    
+    reservation = Buchung.objects.get(id = data.get("id"))
+    
+    if(data.get("tisch") != "undefined"):
+        reservation.tisch = Tisch.objects.get(id=data.get("tisch"))
+    if data.get("datum") != "undefined":
+        reservation.datum = data.get("datum")
+    if data.get("zeitfenster") != "undefined":
+        reservation.zeitfenster = data.get("zeitfenster")
+    if data.get("dauer") != "undefined":
+        reservation.dauer = data.get("dauer")
+
+    reservation.save()
+    return JsonResponse({'message': 'sucess'})
+
+def removeUser(request): 
+    id = request.body
+    try:
+        Buchung.objects.get(id=id).delete()
+    except:
+        return JsonResponse({'message': 'Failed in removing Item'}, status=400)
+    return JsonResponse({'message': 'Item removed'}, status=200)

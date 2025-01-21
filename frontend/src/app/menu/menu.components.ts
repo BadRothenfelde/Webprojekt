@@ -77,7 +77,6 @@ export class MenuComponent {
       console.error("Network error or other issue", error);
     }
   }
-
   getCookie(name: String) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {

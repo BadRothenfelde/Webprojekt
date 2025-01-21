@@ -6,7 +6,7 @@
         <li><button (click)="toggleView('overview')">Dashboard</button></li>
         <li><button (click)="getUsers(); toggleView('user'); ">User Management</button></li>
         <li><button (click)="getMenue(); toggleView('menu')">Menu Management</button></li>
-        <li><button>Seating Management</button></li>
+        <li><button (click)="getSeating(); toggleView('seating')">Seating Management</button></li>
         <li><button (click)="logout()">Logout</button></li>
       </ul>
     </div>
@@ -244,7 +244,79 @@
         </button>
       </section>
     </div>
-    
+    <!-- Seating -->
+    <div *ngIf="tabGroup=='seating'" class="main-content">
+      
+      <section id="dashboard">
+        <h2>Seating Management</h2>
+        <p>View and manage reservation.</p>
+      </section>
+  
+      <section>      
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Tisch</th>
+              <th>Datum</th>
+              <th>Zeitfenster</th>
+              <th>Dauer</th>
+              <th>Buchungscode</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let row of seatingData">
+              <tr *ngIf="reservation.id != null && row.id == reservation.id; else dataDisplay">
+                <td>{{row.id}}</td>
+                <td>
+                  <input type="text" [(ngModel)]="reservation.tisch" name="tisch" [placeholder]="row.tisch">
+                </td>
+                <td>
+                  <input type="date" [(ngModel)]="reservation.datum" name="datum" [placeholder]="row.datum">
+                </td>
+                <td>
+                  <input type="time" [(ngModel)]="reservation.zeitfenster" name="zeitfenster" placeholder="row.zeitfenster">
+                </td>
+                <td>
+                  <input type="number" [(ngModel)]="reservation.dauer" name="dauer" [placeholder]="row.dauer">
+                </td>
+                <td>{{row.buchungscode}}</td>
+                <td style="display: flex; flex-direction: row;">
+                  <button style="width: 50%!" (click)="cancelChangeReservation()">
+                    <span style="font-size: 20px; font-weight: bold;">&#10539;</span>
+                  </button>
+                  <button style="width: 50%!" (click)="changeReservation()">
+                    <span style="font-size: 20px; font-weight: bold;">&#10003;</span>
+                  </button>
+                </td>
+              </tr>
+              <ng-template #dataDisplay>
+                <tr>
+                  <td>{{row.id}}</td>
+                  <td>{{row.tisch}}</td>
+                  <td>{{row.datum}}</td>
+                  <td>{{row.zeitfenster}}</td>
+                  <td>{{row.dauer}}</td>
+                  <td>{{row.buchungscode}}</td>
+                  <td style="display: flex; flex-direction: row;">
+                    <button style="width: 50%!" (click)="removeReservation(row.id)">
+                      <span style="font-size: 20px; font-weight: bold;">&#8722;</span>
+                    </button>
+                    <button style="width: 50%!" (click)="chooseChangeReservation(row.id)">
+                      <span style="font-size: 20px; font-weight: bold;">&#9998;</span>
+                    </button>
+                  </td>
+                </tr>
+              </ng-template>
+            </ng-container>
+          </tbody>
+        </table>
+
+        <!-- No own, please use the tool -->
+
+      </section>
+    </div>
     <!-- Overview of Functions -->
     <div *ngIf="tabGroup=='overview'" class="main-content">
       <section id="dashboard" class="card">
