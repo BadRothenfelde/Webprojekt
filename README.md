@@ -39,6 +39,11 @@ The system will utilize a QR code generator to provide each table with a unique 
 1. Run `docker compose up --build` within the **top** directory
 2. Navigate to the browser `http://localhost:4200`
 
+## Password für Administrator
+
+1. Django Backend: admin - DjangoAdmin
+2. Webseite - Rizzler - 1234
+
 ## Feature Overview
 
 1. **QR Code Generation** (Optional): Unique table access for digital ordering
