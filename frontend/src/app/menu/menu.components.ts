@@ -10,7 +10,7 @@ import { isPlatformBrowser } from '@angular/common';
 export class MenuComponent {
   modalVisible: "log" | null = null;
   menuItem:any = [];
-  order: {[key: number]: { id: number[], name: String[], price: number[], chilliOil: boolean[], chilliFlake: boolean[], soySauce: boolean[] } } = {};
+  order: {[key: number]: { id: number, name: String, price: number, chilliOil: boolean, chilliFlake: boolean, soySauce: boolean } } = {};
   
   orderCount = 0
   id:number = 0;
@@ -43,12 +43,12 @@ export class MenuComponent {
   }
   addToCart(){
     this.order[this.orderCount] ={
-      id: [this.id],
-      name: [this.name],
-      price: [this.price],
-      chilliOil: [this.chilli_oil],
-      chilliFlake: [this.chilli_flakes],
-      soySauce: [this.soy_sauce]
+      id: this.id,
+      name: this.name,
+      price: this.price,
+      chilliOil: this.chilli_oil,
+      chilliFlake: this.chilli_flakes,
+      soySauce: this.soy_sauce
     }
       
     this.orderCount++

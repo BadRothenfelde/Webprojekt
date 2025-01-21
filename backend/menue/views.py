@@ -9,8 +9,8 @@ from .models import Menue
 def menueList(request):
     menue = {"Haupt" : list(Menue.objects.values("id", "name", "picture", "price", "description", "allergies"))}
     return JsonResponse(menue)
+
 def adjustMenu(request):
-    #maybe csrf
     data = request.POST
 
     menu = Menue.objects.get(id = data.get("id"))
@@ -39,7 +39,6 @@ def adjustMenu(request):
     menu.save()
     return JsonResponse({'message': 'sucess'})
 def addItem(request):
-    #maybe csrf
     data = request.POST
     name = data.get("name")
     price = data.get("price")
@@ -57,14 +56,16 @@ def addItem(request):
         return JsonResponse({'message': 'error'})
     
     Menue(name=name, price=price, description=description, picture="http://127.0.0.1:8000/menue/"+picture.name+"/", allergies=allergies).save()
-    return JsonResponse({'message': 'sucess'})
+    return JsonResponse({'message': 'sucess'}, status=200)
+
 def removeItem(request):
-    id = request.body.decode("utf-8")
+    id = request.body
     try:
         Menue.objects.get(id=id).delete()
     except:
         return JsonResponse({'message': 'Failed in removing Item'}, status=400)
     return JsonResponse({'message': 'Item removed'}, status=200)
+
 def menuePic(request, pic_name):
     img = open("./menue/assets/"+(pic_name), "rb")
     return FileResponse(img)

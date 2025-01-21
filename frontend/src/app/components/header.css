@@ -98,10 +98,8 @@ button {
 }
 
 button:hover {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid white;
 }
-
-
 .modal-content {
      /* 5% from the top, 15% from the bottom and centered*/
     width: 25%;
@@ -111,6 +109,14 @@ button:hover {
     position: relative;
     flex-direction: column;
     align-items: center;
+
+    button{
+        color: black;
+    }
+        
+    button:hover {
+        border-bottom: 1px solid black;
+    }
 }
 
 input {

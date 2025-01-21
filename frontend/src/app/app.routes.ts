@@ -10,6 +10,8 @@ import { AdministrationModule } from './administration/administration.module';
 import { MenuModule } from './menu/menu.module';
 import { ReservationComponent } from './reservation/reservation.component';
 import { GallerieComponent } from './gallerie/gallerie.component';
+import { UserComponent } from './user/user.component';
+import { UserModule } from './user/user.module';
 
 export const routes: Routes = [
     {path: "home", component: LandingComponent },
@@ -20,11 +22,12 @@ export const routes: Routes = [
     {path: "allergy", component: AllergyComponent },
     {path: "reservation", component: ReservationComponent},
     {path: "administration", component: AdministrationComponent },
+    {path: "user", component: UserComponent},
     {path: "", redirectTo: "/home", pathMatch: "full" }
 ];
 
 @NgModule({
-    imports: [AdministrationModule, MenuModule, RouterModule. forRoot(routes)],
+    imports: [AdministrationModule, MenuModule, UserModule, RouterModule. forRoot(routes)],
     exports: [RouterModule]
 })
 export class AppRoutingModuke { }

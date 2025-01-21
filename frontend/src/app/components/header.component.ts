@@ -8,7 +8,7 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrl: './header.css',
 })
 export class HeaderComponent {
-    modalVisible: "log" | null | "order" = null;
+    modalVisible: "log" | null | "order" | "regist" = null;
     
     admin = false;
     logged = false;
@@ -16,22 +16,15 @@ export class HeaderComponent {
     csrftoken: String = "";
     isPlatFormBrowser
 
-    order: {[key: number]: { id: number[],name: String[], price: number[], chilliOil: boolean[], chilliFlake: boolean[], soySauce: boolean[] } } = {};
-    viewOrder: [{ id: number[], name: String[], price: number[], chilliOil: boolean[], chilliFlake: boolean[], soySauce: boolean[] }] = [{
-      id: [],
-      name: [],
-      price: [],
-      chilliOil: [],
-      chilliFlake: [],
-      soySauce: []
-    }]
-    
+    order: {[key: number]: { id: number,name: String, price: number, chilliOil: boolean, chilliFlake: boolean, soySauce: boolean } } = {};
+    viewOrder: { id: number, name: String, price: number, chilliOil: boolean, chilliFlake: boolean, soySauce: boolean }[] = []
+
     constructor(@Inject(PLATFORM_ID) platformId: Object) {
       this.isPlatFormBrowser = isPlatformBrowser(platformId);
     }
     removeItem(id: number){
       for(let i = 0; i < this.viewOrder.length; i++){
-        if(this.viewOrder[i].id[0] == id){
+        if(this.viewOrder[i].id == id){
           
         }
       }
@@ -52,31 +45,66 @@ export class HeaderComponent {
             this.admin = true
         }
       }
-      cook = this.getCookie("order")
+    }
+    
+    regist = {
+      id:null,
+      vorname:"",
+      nachname:"",
+      password:"",
+      beschreibung:"Kunden Nutzer",
+      lvl:"1",
+      profilePicture: null as File | null,
+    }
+    async addUser(event: Event){
+      event.preventDefault()
+      
+      const formData = new FormData();
+      formData.append('vorname', this.regist.vorname);
+      formData.append('nachname', this.regist.nachname);
+      formData.append('password', this.regist.password);
+      formData.append('beschreibung', this.regist.beschreibung);
+      formData.append('lvl', this.regist.lvl);
+
+      if (this.regist.profilePicture) {
+        formData.append('profilePicture', this.regist.profilePicture);
+      }
+      console.info(formData)
+
+      let response = await fetch("http://127.0.0.1:8000/administration/registry/", {
+        method: 'POST',
+        body: formData
+      })
+      this.toggleModal(null)
+    }
+    selectedProfile(event: any) {
+      this.regist.profilePicture = event.target.files[0];
+    }
+    updateOrder(){
+      let cook = this.getCookie("order")
       if(cook != null){
         this.order = JSON.parse(cook)
         const orderCount = Object.keys(this.order).length
         
-        this.viewOrder.pop()
-
-        for (let i = 0; i < orderCount; i++){
+        if(orderCount == this.viewOrder.length)
+          return;
+        this.viewOrder = []
+        for (let i = this.viewOrder.length; i < orderCount; i++){
           this.viewOrder.push({
-            id: [this.order[i].id[0]],
-            name: [this.order[i].name[0]],
-            price: [this.order[i].price[0]],
-            chilliOil: [this.order[i].chilliOil[0]],
-            chilliFlake: [this.order[i].chilliFlake[0]],
-            soySauce: [this.order[i].soySauce[0]]
+            id: this.order[i].id,
+            name: this.order[i].name,
+            price: this.order[i].price,
+            chilliOil: this.order[i].chilliOil,
+            chilliFlake: this.order[i].chilliFlake,
+            soySauce: this.order[i].soySauce
           })
         }
         
         console.info(this.viewOrder)
       }
     }
-    
 
-
-    toggleModal(modal: 'log' | null | "order"){
+    toggleModal(modal: 'log' | null | "order" | "regist"){
       this.modalVisible = modal;
     }
 

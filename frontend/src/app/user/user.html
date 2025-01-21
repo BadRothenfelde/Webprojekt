@@ -1,0 +1,34 @@
+<main>
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+      <ul>
+        <li><button (click)="toggleView('overview')">Dashboard</button></li>
+        <li><button (click)="toggleView('overview'); ">Nutzer</button></li>
+        <li><button (click)="toggleView('overview')">Bestellung Historie</button></li>
+        <li><button (click)="logout()">Logout</button></li>
+      </ul>
+    </div>
+    
+    <!-- Overview of Functions -->
+    <div *ngIf="tabGroup=='overview'" class="main-content">
+      <h2>Willkommen, Lieber Gast!</h2>
+      <p>Verwalte hier deine Bestellung und deine Informationen</p>
+      <hr /> <br/>
+      <section id="users" class="card">
+        <h2>Nutzer</h2>
+        <p>Verwalte und Ändere deine Informationen</p>
+      </section>
+  
+      <section id="settings" class="card">
+        <h2>Bestellung Historie</h2>
+        <p>Hier kannst du deine getätige Bestellung nachverfolgen.</p>
+      </section>
+  
+      <section id="logout" class="card">
+        <h2>Reports</h2>
+        <p>Generate and view reports for various metrics.</p>
+      </section>
+    </div>
+    
+</main>
