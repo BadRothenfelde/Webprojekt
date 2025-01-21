@@ -46,15 +46,13 @@ The system will utilize a QR code generator to provide each table with a unique 
 
 ## Feature Overview
 
-1. **QR Code Generation** (Optional): Unique table access for digital ordering
-2. **Table and Local Occupancy**: Real-time display of available tables and current restaurant capacity.
-3. **Reservation System**: Streamlined online reservation process.
-4. **Digital Ordering Process**:
+1. **Reservation System**: Streamlined online reservation process.
+2. **Digital Ordering Process**:
    * **Menu Selection**: View and choose from a curated digital menu
    * **Cart Management**: Add items to a virtual cart before finalizing the order
+      (Suspended)
    * **Payment Gateway**: Secure, streamlined payment process
    * **Order Submission**: Quick and reliable order placement
-5. **Order Management**: Smooth backend process for staff to view and manage orders.
-6. **Admin Console**:
+3. **Order Management**: Smooth backend process for staff to view and manage orders.
+4. **Admin Console**:
    * **Content Management**: Update menu, availability, and promotions
-   * **Newsletter Management**: Keep customers informed of new offerings.
