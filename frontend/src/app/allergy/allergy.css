@@ -5,15 +5,15 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: #f9f9f9;
-    color: white; /* 🔥 Schrift bleibt weiß */
+    color: white; 
     position: relative;
 }
 
-/* 🔥 Hintergrundbild jetzt 100% der gesamten Seite */
+
 .background-container {
     position: fixed;
     width: 100%;
-    height: 100vh; /* 🔥 Jetzt immer 100% der Bildschirmhöhe */
+    height: 100vh; 
     min-height: 100%;
     top: 0;
     left: 0;
@@ -28,7 +28,7 @@ body {
     filter: blur(2px);
 }
 
-/* 🔥 Header bleibt fixiert */
+
 header {
     position: fixed;
     top: 0;
@@ -44,7 +44,7 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* 🔥 Hauptinhalt */
+
 main {
     margin-top: 80px;
     flex: 1;
@@ -54,11 +54,11 @@ main {
     flex-direction: column;
 }
 
-/* 🔥 Breiter Kasten mit weißem Rand */
+
 .container {
     width: 80%;
     max-width: 1400px;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.8);
     border: 1px solid white;
     border-radius: 8px;
     padding: 40px;
@@ -67,33 +67,33 @@ main {
     color: white;
 }
 
-/* 🔥 Inhaltsstoffe-Überschrift */
+
 h1 {
     color: white;
     text-align: center;
     font-size: 2.5rem;
 }
 
-/* 🔥 Inhaltsstoffe in zwei Spalten */
+
 #boss {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-/* 🔥 Linke Spalte - linksbündig */
+
 .column-left {
     width: 48%;
     text-align: left;
 }
 
-/* 🔥 Rechte Spalte - rechtszentriert */
+
 .column-right {
     width: 48%;
     text-align: right;
 }
 
-/* 🔥 Listenelemente */
+
 ol {
     list-style-type: upper-roman;
     padding: 0;
@@ -101,7 +101,7 @@ ol {
     margin: 0;
 }
 
-/* 🔥 Alle Listenelemente bleiben gleich groß */
+
 ol li {
     width: 100%;
     font-size: 1.2em;
@@ -111,30 +111,30 @@ ol li {
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
     
-    /* 🔥 Automatische Worttrennung nach 4 Wörtern */
+    
     display: inline-block;
     max-width: 95%;
     white-space: pre-line;
     word-break: break-word;
 }
 
-/* 🔥 Links: bleibt linksbündig beim Hover */
+
 .column-left ol li {
     text-align: left;
 }
 
-/* 🔥 Rechts: bleibt rechtszentriert beim Hover */
+
 .column-right ol li {
     text-align: right;
 }
 
-/* 🔥 Hover-Effekt */
+
 ol li:hover {
     background-color: rgba(255, 255, 255, 0.1);
     color: #0073e6;
 }
 
-/* 🔥 Unterpunkte */
+
 ol li ul {
     margin-top: 5px;
     font-size: 0.9em;
@@ -142,17 +142,17 @@ ol li ul {
     display: none;
 }
 
-/* 🔥 Unterpunkte erscheinen bei Hover und behalten die Ausrichtung */
+
 ol li:hover ul {
     display: block;
 }
 
-/* 🔥 Rechts: Unterpunkte bleiben rechtsbündig */
+
 .column-right ol li ul {
     text-align: right;
 }
 
-/* 🔥 Links: Unterpunkte bleiben linksbündig */
+
 .column-left ol li ul {
     text-align: left;
 }

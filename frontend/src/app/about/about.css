@@ -1,8 +1,7 @@
-/* Hintergrundbild über die ganze Seite */
 .background-container {
     position: absolute;
     width: 100%;
-    height: 100vh; /* 🔥 Jetzt nimmt das Bild die volle Höhe der Seite ein */
+    height: 100vh;
     top: 0;
     left: 0;
     z-index: -1;
@@ -12,28 +11,27 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: blur(2px); /* 🔥 Leichter Blur für besseren Kontrast */
+    filter: blur(2px); 
 }
 
-/* Weißer Rahmen für den Inhalt, aber ohne Hintergrundfüllung */
 .content {
     width: 60%;
     margin: 10vh auto;
     padding: 40px;
-    border: 1px solid white; /* 🔥 Nur weißer Rand */
+    border: 1px solid white; 
     border-radius: 10px;
     text-align: center;
 }
 
-/* Überschrift in weiß */
+
 h2 {
     font-size: 2rem;
-    color: white; /* 🔥 Jetzt ist "Unsere Philosophie" weiß */
+    color: white; 
 }
 
-/* Text ebenfalls in Weiß */
+
 p {
     font-size: 1.2rem;
     line-height: 1.6;
-    color: white; /* 🔥 Jetzt ist auch der Text weiß */
+    color: white;
 }

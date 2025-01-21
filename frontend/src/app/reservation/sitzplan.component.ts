@@ -6,16 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reservation.css']
 })
 export class SitzplanComponent implements OnInit {
-  sitzplan: any[] = []; // Array zum Speichern der Sitzplan-Daten
-  selectedDatum: string | null = null; // Beispieldatum
-  selectedZeitfenster: string | null = null; // Beispielzeitfenster
-  isSitzplanVisible: boolean = false; // 🔥 NEU: Sitzplan erst nach Klick sichtbar
+  sitzplan: any[] = []; 
+  selectedDatum: string | null = null; 
+  selectedZeitfenster: string | null = null; 
+  isSitzplanVisible: boolean = false; 
 
   ngOnInit(): void {
     // this.ladeSitzplan();
   }
 
-  // 🔥 Sitzplan erst laden, wenn Datum & Uhrzeit ausgewählt sind
+
   async ladeSitzplan() {
     if (!this.selectedDatum || !this.selectedZeitfenster) {
       alert('Bitte wähle Datum und Zeitfenster aus.');
@@ -34,10 +34,10 @@ export class SitzplanComponent implements OnInit {
       }
       const data = await response.json();
       
-      this.sitzplan = data.Sitzplan; // Sitzplan-Daten speichern
+      this.sitzplan = data.Sitzplan;
       console.log(this.sitzplan);
 
-      this.isSitzplanVisible = true; // 🔥 NEU: Sitzplan wird sichtbar
+      this.isSitzplanVisible = true; 
     } catch (error) {
       console.error('Fehler beim Laden des Sitzplans:', error);
       alert('Fehler beim Laden des Sitzplans.');
@@ -50,7 +50,7 @@ export class SitzplanComponent implements OnInit {
   popup2: string = '';
   popup2Message = "";
 
-  // 🔥 Methode, um das Pop-up zu öffnen
+  
   openPopup(tisch: any): void {
     this.selectedTisch = tisch;
     this.isPopupOpen = true;
@@ -61,7 +61,7 @@ export class SitzplanComponent implements OnInit {
     this.isPopupOpen2 = true;
   }
 
-  // 🔥 Methode, um das Pop-up zu schließen
+
   closePopup() {
     this.isPopupOpen = false;
     this.selectedTisch = null;
@@ -71,7 +71,7 @@ export class SitzplanComponent implements OnInit {
     this.isPopupOpen2 = false;
   }
 
-  // 🔥 Tisch buchen
+
   async bucheTisch(tisch: any) {
     if (tisch.status === 'besetzt') {
       alert('Dieser Tisch ist bereits besetzt.');
@@ -112,7 +112,7 @@ export class SitzplanComponent implements OnInit {
 
       this.openPopup2(popup2Message);
 
-      await this.ladeSitzplan(); // 🔥 Sitzplan nach Buchung neu laden
+      await this.ladeSitzplan();
     } catch (error: any) {
       console.error('Fehler bei der Buchung:', error);
       alert(`Fehler bei der Buchung: ${error.message}`);

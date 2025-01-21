@@ -4,17 +4,17 @@
   </div>
 
   <div class="container">
-    <!-- 🔥 Neuer Kasten um die Überschrift "Restaurant Sitzplan" -->
+    
     <div class="header-box">
       <p>Tischreservierung</p>
     </div>
 
-    <!-- 🔥 Neuer Kasten für Buchungsinfo -->
+
     <div class="booking-info">
       <p>Jede Reservierung geht 90 Minuten <br> Letzte Reservierung des Tages: 21:30 Uhr</p>
     </div>
 
-    <!-- 🔥 Neuer Kasten um Datum, Zeitfenster & Button -->
+    
     <div class="filters-box">
       <div class="filters">
         <label for="datum">Datum:</label>
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <!-- 🔥 Das Pop-up für Tischbuchung -->
+  
     <div *ngIf="isPopupOpen" class="popup">
       <div class="popup-content">
         <h2>Tisch: {{ selectedTisch.tisch.tisch_id }}</h2>
@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <!-- 🔥 Das Bestätigungs-Pop-up -->
+
     <div *ngIf="isPopupOpen2" class="popup">
       <div class="popup-content">
         <div [innerHTML]="popup2"></div>
@@ -45,7 +45,7 @@
       </div>
     </div>
 
-    <!-- 🔥 Sitzplan mit automatisch ausgerichteten Tischen -->
+
     <div *ngIf="isSitzplanVisible" class="sitzplan"> 
       <div
         *ngFor="let tisch of sitzplan"

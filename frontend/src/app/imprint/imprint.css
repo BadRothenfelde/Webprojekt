@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9; /* Weißer Hintergrund */
+    background-color: #f9f9f9; 
 }
 
 main {
@@ -10,26 +10,26 @@ main {
     padding: 0 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Der Inhalt wird nach oben ausgerichtet */
-    align-items: flex-start; /* Der Inhalt wird nach links ausgerichtet */
+    justify-content: flex-start; 
+    align-items: flex-start; 
 }
 
 h1 {
-    font-size: 3.125rem; /* Große Schrift für den Haupttitel */
-    text-align: center; /* Text mittig ausrichten */
-    color: rgb(53, 38, 26); /* Dunkles Braun */
+    font-size: 3.125rem; 
+    text-align: center; 
+    color: rgb(53, 38, 26); 
     margin-bottom: 20px;
-    width: 100%; /* Damit der Titel die gesamte Breite einnimmt */
-    text-align: center; /* Mit dieser Eigenschaft wird der Titel mittig auf der Seite angezeigt */
+    width: 100%; 
+    text-align: center; 
 }
 
 
 p {
-    font-size: 1.2rem; /* Mittlere Schriftgröße */
-    text-align: left; /* Text links ausrichten */
-    color: rgb(53, 38, 26); /* Dunkles Braun */
+    font-size: 1.2rem; 
+    text-align: left; 
+    color: rgb(53, 38, 26); 
     margin-bottom: 40px;
-    line-height: 1.8; /* Zeilenhöhe für bessere Lesbarkeit */
+    line-height: 1.8; 
 }
 
 .content {
@@ -39,8 +39,8 @@ p {
 
 section.intro {
     padding: 50px 20px;
-    text-align: left; /* Text links ausrichten */
-    background-color: rgb(255, 255, 255); /* Weißer Hintergrund für den Text */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
-    border-radius: 10px; /* Abgerundete Ecken */
+    text-align: left; 
+    background-color: rgb(255, 255, 255); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 10px; 
 }
