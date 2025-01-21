@@ -49,10 +49,9 @@ The system will utilize a QR code generator to provide each table with a unique 
 1. **Reservation System**: Streamlined online reservation process.
 2. **Digital Ordering Process**:
    * **Menu Selection**: View and choose from a curated digital menu
-   * **Cart Management**: Add items to a virtual cart before finalizing the order
-      (Suspended)
-   * **Payment Gateway**: Secure, streamlined payment process
-   * **Order Submission**: Quick and reliable order placement
+   * **Cart Management**: Add items to a virtual cart before finalizing the order     
+   * **Payment Gateway**: Secure, streamlined payment process (Suspended)
+   * **Order Submission**: Quick and reliable order placement (Suspended)
 3. **Order Management**: Smooth backend process for staff to view and manage orders.
 4. **Admin Console**:
    * **Content Management**: Update menu, availability, and promotions

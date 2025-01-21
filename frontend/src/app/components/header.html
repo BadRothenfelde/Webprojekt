@@ -25,7 +25,7 @@
             <div id="order" class="modal" [style.display]="modalVisible == 'order' ? 'block' : 'none'">
 
                 <div class="modal-content animate">
-                    <h1 style="color: black"> Einkaufskorb </h1>
+                    <h1 style="color: black"> Warenkorb </h1>
                     <span (click)="toggleModal(null)" class="close" title="close Modal">&times;</span>
                    <table>
                         <thead>
@@ -52,7 +52,7 @@
                         </tbody>
                    </table>
                    <button style="font-size: 20px; font-weight: bold; color: black">
-                        Einkaufen
+                        Bestellen
                     </button>
                 </div>
             </div>
@@ -73,10 +73,6 @@
                     <div class="form-group">
                         <label for="nachname">Nachname</label>
                         <input type="text" [(ngModel)]="regist.nachname" name="nachname" placeholder="Enter your surname" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="profilePicture">Profile Picture</label>
-                        <input type="file" (change)="selectedProfile($event)" name="profilePicture" accept="image/*">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>

@@ -60,7 +60,6 @@ export class MenuComponent {
     d.setTime(d.getTime() + 120 * 60 * 1000);
     let expires:string = `expires=${d.toUTCString()}`;
     document.cookie = "order="+JSON.stringify(this.order)+`;${expires};path=/`
-    console.info(this.order)
     this.toggleModal(null)
   }
   async getMenue(): Promise<any>{

@@ -133,7 +133,10 @@ export class HeaderComponent {
 
       if(this.logged){
         this.toggleModal(null)
-        window.location.href="/administration"
+        if(this.admin) 
+          window.location.href="/administration"
+        else
+          window.location.href="/user"
       }
     }
   }
