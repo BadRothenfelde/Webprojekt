@@ -16,7 +16,7 @@ class Buchung(models.Model):
     datum = models.DateField()  # Reservierungsdatum
     zeitfenster = models.TimeField()  # Beginn der Reservierung
     dauer = models.IntegerField()  # Dauer in Minuten
-    buchungscode = models.CharField(max_length=6, unique=True, null=False)  # Der Buchungscode
+    buchungscode = models.CharField(max_length=6, unique=True, null=True)  # Der Buchungscode
 
     def __str__(self):
         return f"Buchung: {self.tisch.tisch_id} - {self.datum} {self.zeitfenster}"

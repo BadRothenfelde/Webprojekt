@@ -14,6 +14,8 @@ import { AdministrationComponent } from './administration/administration.compone
 import { AdministrationModule } from './administration/administration.module';
 import { MenuModule } from './menu/menu.module';
 import { GallerieComponent } from './gallerie/gallerie.component';
+import { UserComponent } from './user/user.component';
+import { UserModule } from './user/user.module';
 
 
 export const routes: Routes = [
@@ -26,6 +28,8 @@ export const routes: Routes = [
     { path: "", redirectTo: "/home", pathMatch: "full" },
     {path: "gallerie", component: GallerieComponent},
     {path: "administration", component: AdministrationComponent },
+    {path: "user", component: UserComponent},
+    {path: "", redirectTo: "/home", pathMatch: "full" }
 ];
 
 @NgModule({
@@ -35,7 +39,9 @@ export const routes: Routes = [
         HttpClientModule,             
         FormsModule,  
         SitzplanModul,
-        AdministrationModule, MenuModule         
+        AdministrationModule,
+        MenuModule,
+        UserModule         
     ],
     exports: [RouterModule]
 })

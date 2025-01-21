@@ -42,3 +42,4 @@ testem.log
 Thumbs.db
 
 /backend/*/*.pyc
+/backend/db.sqlite3

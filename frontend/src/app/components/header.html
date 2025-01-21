@@ -14,10 +14,11 @@
             <a href="/about" aria-label="About"> Philosophie </a>
 
             
-            <button class="navBtn" (click)="toggleModal('order')" style="width: auto;"> Bestellung </button>
+            <button class="navBtn" (click)="toggleModal('order'); updateOrder()" style="width: auto;"> Bestellung </button>
 
             <!-- <a href="/member aria-label="Member"> Mitglied </a> -->
-            <button *ngIf="!logged" class="navBtn" (click)="toggleModal('log')" style="width: auto;"> Example Modal </button>
+            <button *ngIf="!logged" class="navBtn" (click)="toggleModal('log')" style="width: auto;"> Login </button>
+            <a *ngIf="logged" href="/user" aria-label="User"> {{user.name}} </a>
             <a *ngIf="admin" href="/administration" aria-label="Admin"> Admin </a>
            
             <!-- Modal Order -->
@@ -29,6 +30,7 @@
                    <table>
                         <thead>
                             <tr>
+                                <th>Nr.</th>
                                 <th>Name</th>
                                 <th>Preis</th>
                                 <th>Extra</th>
@@ -36,7 +38,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let row of viewOrder">
+                            <tr *ngFor="let row of viewOrder; let i = index">
+                                <td>{{i + 1}}</td>
                                 <td>{{row.name}}</td>
                                 <td>{{row.price}}</td>
                                 <td> Extras </td>
@@ -54,30 +57,68 @@
                 </div>
             </div>
             
+            <!-- Regist User Modal-->
+            <div *ngIf="modalVisible=='regist'" class="modal" >
+                <div  class="modal-content animate"> 
+                <section>
+                    <h1>Registration Form</h1>
+                    <span (click)="toggleModal(null)" class="close" title="close Modal">&times;</span>
+                </section>
+                <section>
+                    <form (ngSubmit)="addUser($event)" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="vorname">Vorname</label>
+                        <input type="text"  [(ngModel)]="regist.vorname" name="vorname" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nachname">Nachname</label>
+                        <input type="text" [(ngModel)]="regist.nachname" name="nachname" placeholder="Enter your surname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profilePicture">Profile Picture</label>
+                        <input type="file" (change)="selectedProfile($event)" name="profilePicture" accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" [(ngModel)]="regist.password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group" style="display: flex; flex-direction: column; align-items: center;">
+                        <button type="submit" style="color: white" class="modalBtn">Registrierung</button>
+                    </div>
+                    </form>
+                    <div class="row">
+                        <button class="button" type="button" style="margin:auto; width: 40%;" (click)="toggleModal(null)"> Cancel </button>
+                        <button class="navBtn" (click)="toggleModal('log')" style="margin:auto; width: 40%;"> Login </button>
+                    </div>
+                </section>
+                </div>
+            </div>
 
             <!-- Modal log -->
-            <div id="log" class="modal" [style.display]="modalVisible == 'log' ? 'block' : 'none'">
+            <div id="log"  class="modal" [style.display]="modalVisible == 'log' ? 'block' : 'none'">
+                <div style="position: relative" class="modal-content animate">
+                    <section>
+                        <h1>Login Form</h1>
+                        <span (click)="toggleModal(null)" class="close" title="close Modal">&times;</span>
+                    </section>
+                    <section>
+                        <form action="/" method="post">
+                            <div class="row" style="flex-direction: column">
 
-                <form class="modal-content animate" action="/" method="post">
-                    <h1> Login </h1>
-                    <span (click)="toggleModal(null)" class="close" title="close Modal">&times;</span>
+                                <label for="name"><b> Benutzername </b></label>
+                                <input type="text" placeholder="Benutzername" name="name" #username>
+                                <label for="pass"><b> Passwort </b></label>
+                                <input type="password" placeholder="Passwort" name="pass" #password>
+                                <button type="button" style="color: white;" class="modalBtn" (click)="verify(username.value, password.value)"> Login </button>
 
-                    <div class="row" style="flex-direction: column">
-
-                        <label for="name"><b> Benutzername </b></label>
-                        <input type="text" placeholder="Benutzername" name="name" #username>
-                        <label for="pass"><b> Passwort </b></label>
-                        <input type="password" placeholder="Passwort" name="pass" #password>
-                        <button type="button" class="modalBtn" (click)="verify(username.value, password.value)"> Login </button>
-
-                    </div>
-                    <div class="row">
-                        <button type="button" style="margin:auto; width: 40%;" (click)="toggleModal(null)"> Cancel
-                        </button>
-                        <a style="text-align: center; margin: auto; width: 40%; padding-bottom: 5px" href="/">
-                            Forgot password? </a>
-                    </div>
-                </form>
+                            </div>
+                            <div class="row">
+                                <button type="button" style="margin:auto; width: 40%;" (click)="toggleModal(null)"> Cancel </button>
+                                <button *ngIf="!logged" class="navBtn" (click)="toggleModal('regist')" style="width: auto;"> Registrierung </button>
+                            </div>
+                        </form>
+                    </section>
+                </div>
             </div>
             <!-- End of Modal log -->
 

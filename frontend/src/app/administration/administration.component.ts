@@ -57,6 +57,7 @@ export class AdministrationComponent {
         console.error("Network error or other issue", error);
       }
     }
+    
     async removeUser(id: number){
       let response = await fetch("http://127.0.0.1:8000/administration/purge/", {
         headers: {'Content-Type': 'application/json'},
@@ -150,7 +151,7 @@ export class AdministrationComponent {
       nachname:"",
       password:"",
       beschreibung:"",
-      lvl:"",
+      lvl:"1",
       profilePicture: null as File | null,
     }
     async changeUser(){
@@ -204,7 +205,6 @@ export class AdministrationComponent {
       if (this.user.profilePicture) {
         formData.append('profilePicture', this.user.profilePicture);
       }
-      console.info(formData)
 
       let response = await fetch("http://127.0.0.1:8000/administration/registry/", {
         method: 'POST',
