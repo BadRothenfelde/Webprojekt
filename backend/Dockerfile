@@ -4,6 +4,7 @@ WORKDIR /src/backend
 
 RUN python -m pip install Django
 RUN python -m pip install django-cors-headers
+RUN python -m pip install djangorestframework
 
 COPY ./ ./
 

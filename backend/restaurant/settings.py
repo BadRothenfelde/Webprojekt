@@ -41,10 +41,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'test.apps.TestConfig',
+    'rest_framework.authtoken',
+
     'menue.apps.MenueConfig',
+    'seating.apps.SeatingConfig',
     'administration.apps.AdministrationConfig'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # Stelle sicher, dass diese Zeile hier ist
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
 
 MIDDLEWARE = [
     #CORS

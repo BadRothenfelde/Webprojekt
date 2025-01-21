@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
+
+
+
+
 import { FooterModule } from './components/footer.module';
 import { HeaderModule } from './components/header.module';
  

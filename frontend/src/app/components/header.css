@@ -11,11 +11,10 @@
     transition: background-color 0.3s ease-in-out; 
 }
 
-/* Header Content Layout */
 .row {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    align-items: center;  /* Vertikal zentrieren */
+    justify-content: space-between; /* Abstand zwischen Logo, Titel und Navigation */
     margin: 0 auto;
 }
 table{
@@ -57,10 +56,16 @@ tr{
 }
 
 h1 {
-    font-size: 2.125rem; /* Smaller header font */
+    font-size: 2.125rem; /* Kleinere Schrift für den Titel */
     color: rgb(226, 223, 223);
-    text-transform: uppercase; /* For a more elegant touch */
-    margin-right: auto; /* Push the nav to the right */
+    text-transform: uppercase;
+    margin-left: 20px; /* Abstand zum Logo */
+}
+
+.logo {
+    width: 60px; /* Logo-Größe, kann nach Bedarf angepasst werden */
+    height: auto; /* Beibehaltung des Seitenverhältnisses */
+    margin-right: 10px; /* Abstand zum Titel */
 }
 
 nav {
@@ -75,7 +80,7 @@ nav a {
     text-decoration: none;
     font-size: 1rem;
     text-transform: uppercase;
-    padding: 8px 12px; /* Smaller padding for compactness */
+    padding: 8px 12px; /* Kleinere Polsterung für Kompaktheit */
     border-radius: 4px;
     border-bottom: 1px solid transparent;
 }
@@ -100,11 +105,10 @@ button {
 button:hover {
     border-bottom: 1px solid white;
 }
+
 .modal-content {
-     /* 5% from the top, 15% from the bottom and centered*/
     width: 25%;
     padding: 20px;
-    
     display: flex;
     position: relative;
     flex-direction: column;
@@ -158,15 +162,17 @@ span.close {
     color: red;
 }
 
-.animate{
+.animate {
     -webkit-animation: animatezoom 0.6s;
     animation: animatezoom 0.6s;
 }
+
 @-webkit-keyframes animatezoom {
-    from{-webkit-transform: scale(0);}
-    to {-webkit-transform: scale(1);}
+    from { -webkit-transform: scale(0); }
+    to { -webkit-transform: scale(1); }
 }
-@keyframes animatezoom{
-    from{transform: scale(0);}
-    to {transform: scale(1);}
+
+@keyframes animatezoom {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
 }
